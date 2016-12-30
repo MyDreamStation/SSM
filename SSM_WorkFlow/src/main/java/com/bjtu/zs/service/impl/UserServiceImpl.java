@@ -1,4 +1,4 @@
-package com.bjtu.zs.sevice.impl;
+package com.bjtu.zs.service.impl;
 
 import org.springframework.stereotype.Service;
 
