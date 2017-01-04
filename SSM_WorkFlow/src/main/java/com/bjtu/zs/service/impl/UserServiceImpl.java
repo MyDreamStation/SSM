@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import com.bjtu.zs.service.UserService;
 
-@Service
+@Service(value="userServiceImpl")
 public class UserServiceImpl implements UserService {
 
 	@Override

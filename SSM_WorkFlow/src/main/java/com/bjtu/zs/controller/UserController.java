@@ -20,7 +20,7 @@ import com.bjtu.zs.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 
-	@Autowired
+	@Resource(name="userServiceImpl")
 	private UserService userService;
 	
 	@RequestMapping(value="/add")
@@ -33,8 +33,10 @@ public class UserController {
 	
 	public static void main(String[] args) {
 		ApplicationContext ctx=new ClassPathXmlApplicationContext("applicationContext.xml");
-		UserService userService=ctx.getBean(UserService.class);
-		userService.addUser("zhnagsan");
-//		new UserController().addUser("zhangsan");
+//		UserService userService=ctx.getBean(UserService.class);
+//		userService.addUser("zhnagsan");
+		UserController userController=ctx.getBean(UserController.class);
+		
+		userController.addUser("zhangsan");
 	}
 }

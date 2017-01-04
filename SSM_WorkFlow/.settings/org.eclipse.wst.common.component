@@ -3,6 +3,42 @@
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
+        <dependent-module archiveName="mysql-connector-java-5.1.40-bin.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/jdbc/mysql-connector-java-5.1.40-bin.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-logging-1.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/common/commons-logging-1.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-context-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-context-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-core-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-core-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-beans-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-beans-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mybatis-3.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/mybatis/mybatis-3.3.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-expression-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-expression-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="servlet-api.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/common/servlet-api.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="org.springframework.asm-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/org.springframework.asm-3.1.2.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-jdbc-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-jdbc-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-web-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-web-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-webmvc-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/SSM_WorkFlow/WebContent/WEB-INF/lib/spring/basic/spring-webmvc-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="SSM_WorkFlow"/>
         <property name="java-output-path" value="/SSM_WorkFlow/build/classes"/>
     </wb-module>
