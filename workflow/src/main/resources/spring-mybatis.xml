@@ -41,9 +41,14 @@
 
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- mybatis所映射的数据源 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mapping.xml文件 -->
 		<property name="mapperLocations" value="classpath:com/bjtu/zs/mapping/*.xml"></property>
+		<!-- 事务配置 -->
+		 <property name="transactionFactory">
+	    	<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
+		 </property>  
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
