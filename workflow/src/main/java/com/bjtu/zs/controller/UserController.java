@@ -34,7 +34,6 @@ public class UserController {
 	@RequestMapping(value="/add")
 	@ResponseBody
 	public Map<String,Object> addUser(String userName){
-		userService.addUser(userName);
 		Map<String,Object> map=new HashMap<>();
 		
 		map.put("success", "true");

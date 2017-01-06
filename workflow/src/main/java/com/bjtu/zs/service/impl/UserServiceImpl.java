@@ -17,17 +17,36 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private UserDao userDao;
 
-	@Override
-	public void addUser(String userName) {
-		// TODO Auto-generated method stub
-		System.out.println("add User"+userName);
-	}
 
 	@Override
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
 		List<User> userList=userDao.getAllUser();
 		return userList;
+	}
+
+	@Override
+	public User getUserByParam() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void deleteUserByParam(User user) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void editUser(User user) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
