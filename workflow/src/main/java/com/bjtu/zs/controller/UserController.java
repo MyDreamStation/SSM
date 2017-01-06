@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -61,12 +62,4 @@ public class UserController {
 		return null;
 	}
 	
-	public static void main(String[] args) {
-		ApplicationContext ctx=new ClassPathXmlApplicationContext("spring-mybatis.xml");
-//		UserService userService=ctx.getBean(UserService.class);
-//		userService.addUser("zhnagsan");
-		UserController userController=ctx.getBean(UserController.class);
-		
-		userController.addUser("zhangsan");
-	}
 }
