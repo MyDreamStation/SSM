@@ -15,6 +15,9 @@
 <link rel="stylesheet" 
 	href="resources/bootstrap/css/bootstrap.css" />
 
+<!-- layer.css -->
+<link rel="stylesheet" href="resources/layer/mobile/need/layer.css">
+
 <!-- JQuery.js -->
 <script type="text/javascript" src="resources/jquery.js"></script>
 
@@ -22,6 +25,9 @@
 <script type="text/javascript"
 	src="resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
+
+<!-- layer.js -->
+<script type="text/javascript" src="resources/layer/layer.js"></script>
 
 <body>
 	<div class="row col-">
