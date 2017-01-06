@@ -103,7 +103,7 @@ p {
 }
 </style>
 <script type="text/javascript">
-	var num = 5;
+	var num = 6;
 	function redirect() {
 		num--;
 		document.getElementById("num").innerHTML = num;
