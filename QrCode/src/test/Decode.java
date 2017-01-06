@@ -35,9 +35,4 @@ public class Decode {
 	        }
 	        return retStr;
 	    }
-	 
-	 
-	 public static void main(String[] args) {
-		System.out.println(new Decode().decodeQr("D:\\-1998301148.png"));
-	}
 }
