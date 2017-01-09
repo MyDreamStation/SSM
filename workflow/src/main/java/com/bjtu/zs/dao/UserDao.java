@@ -15,28 +15,28 @@ public interface UserDao {
 	 * @return
 	 */
 	List<User> getAllUser();
-	
+
 	/**
 	 * 通过id获取用户
 	 * 
 	 * @return
 	 */
 	List<User> getUserByParam(User user);
-	
+
 	/**
 	 * 增加用户
 	 * 
 	 * @param user
 	 */
 	void addUser(User user);
-	
+
 	/**
 	 * 删除用户
 	 * 
 	 * @param user
 	 */
 	void deleteUserByParam(User user);
-	
+
 	/**
 	 * 修改用户信息
 	 * 

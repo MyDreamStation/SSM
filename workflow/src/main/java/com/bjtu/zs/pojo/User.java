@@ -1,16 +1,15 @@
 package com.bjtu.zs.pojo;
 
 public class User {
-	
-	//用户id
-	private int id;
-	
-	//用户名
-	private String name;
-	
-	//用户年龄
-	private int age;
 
+	// 用户id
+	private int id;
+
+	// 用户名
+	private String name;
+
+	// 用户年龄
+	private int age;
 
 	public int getId() {
 		return id;
@@ -40,8 +39,5 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", age=" + age + "]";
 	}
-
-	
-	
 
 }

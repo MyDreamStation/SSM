@@ -38,7 +38,7 @@ public class UserController {
 	public Map<String, Object> addUser(
 			@RequestParam(value = "user.userName", defaultValue = "zhangsan") String userName,
 			@RequestParam(value = "user.name", defaultValue = "18") int age) {
-		
+
 		return null;
 	}
 

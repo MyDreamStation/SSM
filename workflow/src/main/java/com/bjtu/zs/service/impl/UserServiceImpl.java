@@ -13,39 +13,34 @@ import com.bjtu.zs.service.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {
-	
+
 	@Autowired
 	private UserDao userDao;
-
 
 	@Override
 	public List<User> getAllUser() {
 		// TODO Auto-generated method stub
-		List<User> userList=userDao.getAllUser();
+		List<User> userList = userDao.getAllUser();
 		return userList;
 	}
-
-
 
 	@Override
 	public void addUser(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void deleteUserByParam(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void editUser(User user) {
 		// TODO Auto-generated method stub
-		
+
 	}
-
-
 
 	@Override
 	public List<User> getUserByParam(User user) {
