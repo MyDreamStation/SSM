@@ -21,7 +21,7 @@ public interface UserDao {
 	 * 
 	 * @return
 	 */
-	User getUserByParam();
+	List<User> getUserByParam(User user);
 	
 	/**
 	 * 增加用户

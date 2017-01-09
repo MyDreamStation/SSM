@@ -25,11 +25,7 @@ public class UserServiceImpl implements UserService {
 		return userList;
 	}
 
-	@Override
-	public User getUserByParam() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 
 	@Override
 	public void addUser(User user) {
@@ -47,6 +43,14 @@ public class UserServiceImpl implements UserService {
 	public void editUser(User user) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+
+	@Override
+	public List<User> getUserByParam(User user) {
+		// TODO Auto-generated method stub
+		return userDao.getUserByParam(user);
 	}
 
 }

@@ -20,7 +20,7 @@ public interface UserService {
 	 * 
 	 * @return
 	 */
-	User getUserByParam();
+	List<User> getUserByParam(User user);
 	
 	/**
 	 * 增加用户
