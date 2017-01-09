@@ -2,11 +2,23 @@ package com.bjtu.zs.pojo;
 
 public class User {
 	
+	//用户id
 	private int id;
 	
+	//用户名
 	private String name;
 	
+	//用户年龄
 	private int age;
+
+	
+	
+	public User(int id, String name, int age) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.age = age;
+	}
 
 	public int getId() {
 		return id;

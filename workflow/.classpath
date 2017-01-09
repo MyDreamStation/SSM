@@ -35,5 +35,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/spring-webmvc-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/org.springframework.web.servlet-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/org.springframework.web-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/QrCode/QrCode.jar" sourcepath="WebContent/WEB-INF/lib/QrCode/QrCode.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
