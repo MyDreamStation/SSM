@@ -1,16 +1,10 @@
 package com.bjtu.zs.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.annotation.Resource;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.interceptor.TransactionAspectSupport;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,6 +14,12 @@ import com.bjtu.zs.pojo.User;
 import com.bjtu.zs.service.UserService;
 import com.bjtu.zs.util.QuickReturn;
 
+/**
+ * 用于处理和用户相关的操作
+ * 
+ * @author zengshuang
+ *
+ */
 @Controller
 @RequestMapping("/user")
 public class UserController {
@@ -28,7 +28,7 @@ public class UserController {
 	private UserService userService;
 
 	/**
-	 * 添加用户测试方法
+	 * 添加用户的测试方法
 	 * 
 	 * @param userName
 	 * @return
@@ -43,7 +43,7 @@ public class UserController {
 	}
 
 	/**
-	 * 获取所有用户的测试类
+	 * 获取所有用户的测试方法
 	 * 
 	 * @return
 	 */
@@ -61,10 +61,33 @@ public class UserController {
 		}
 	}
 
+	/**
+	 * 通过参数获取用户
+	 * 
+	 * @param user
+	 * @return
+	 */
 	@RequestMapping(value = "/getUserByParam", method = RequestMethod.GET)
 	@ResponseBody
 	public Map<String, Object> getUserByParam(User user) {
 		List<User> userList = userService.getUserByParam(user);
 		return QuickReturn.mapOk(userList);
+	}
+
+	/**
+	 * 编辑用户信息
+	 * 
+	 * @param user
+	 * @return
+	 */
+	@RequestMapping(value = "/editUser")
+	@ResponseBody
+	public Map<String, Object> editUser(User user) {
+		try {
+			userService.editUser(user);
+			return QuickReturn.mapOk("success");
+		} catch (Exception e) {
+			return QuickReturn.mapError("服务器异常:" + e.getMessage());
+		}
 	}
 }

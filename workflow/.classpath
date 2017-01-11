@@ -20,7 +20,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jdbc/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log/log4j.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis/mybatis-3.3.1.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis/mybatis-spring.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/servlet-api.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/spring-aop-3.2.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/spring-beans-3.2.2.RELEASE.jar"/>
@@ -36,5 +35,8 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/org.springframework.web.servlet-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/org.springframework.web-3.1.2.RELEASE.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/QrCode/QrCode.jar" sourcepath="WebContent/WEB-INF/lib/QrCode/QrCode.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/spring-aspects-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/spring/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/mybatis/mybatis-spring.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

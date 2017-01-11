@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans  
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd  
                         http://www.springframework.org/schema/context  
@@ -11,7 +10,9 @@
 						http://www.springframework.org/schema/tx 
                         http://www.springframework.org/schema/tx/spring-tx-3.1.xsd  
                         http://www.springframework.org/schema/mvc  
-                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+                        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+                        http://www.springframework.org/schema/aop 
+        				http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	<!-- 组件自动扫描 -->
 	<context:component-scan base-package="com.bjtu.zs"
 		annotation-config="true" />
@@ -39,16 +40,17 @@
 		<!-- <property name="maxWait" value="${maxWait}"></property> -->
 	</bean>
 
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+
 	<!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- mybatis所映射的数据源 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- 自动扫描mapping.xml文件 -->
-		<property name="mapperLocations" value="classpath:com/bjtu/zs/mapping/*.xml"></property>
+		<property name="mapperLocations" value="classpath:com/bjtu/zs/dao/mapping/*.xml"></property>
 		<!-- 事务配置 -->
-		 <property name="transactionFactory">
-	    	<bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" />
-		 </property>  
+		<property name="transactionFactory"> <bean class="org.apache.ibatis.transaction.managed.ManagedTransactionFactory" 
+			/> </property>
 	</bean>
 
 	<!-- DAO接口所在包名，Spring会自动查找其下的类 -->
@@ -63,5 +65,37 @@
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	<!-- <tx:annotation-driven transaction-manager="txManager" /> -->
+	<!-- <tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" isolation="READ_COMMITTED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="upload*" propagation="REQUIRED" />
+			<tx:method name="merge*" propagation="REQUIRED" />
+			<tx:method name="del*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="clear*" propagation="REQUIRED" />
+			<tx:method name="put*" propagation="REQUIRED" />
+			<tx:method name="use*" propagation="REQUIRED" />
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="load*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="count*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="after*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="list*" propagation="REQUIRED" />
+			<tx:method name="pag*" propagation="REQUIRED" />
+			<tx:method name="query*" propagation="REQUIRED" read-only="true" />
+		</tx:attributes>
+	</tx:advice> -->
+
+	<!-- 只对业务逻辑(service)层实施事务 -->
+	<!-- <aop:config>
+		<aop:pointcut id="txPointcut"
+			expression="execution(* com.bjtu.zs.service.*.*(..))" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config> -->
+
 </beans>

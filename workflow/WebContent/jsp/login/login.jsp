@@ -35,8 +35,6 @@
 	src="resources/bootstrap/js/bootstrap.min.js"></script>
 </head>
 
-
-
 <body>
 
 	<div class="rows">

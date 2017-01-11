@@ -43,9 +43,6 @@
         <dependent-module archiveName="jackson-module-jaxb-annotations-2.2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/jackson/jackson-module-jaxb-annotations-2.2.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="mybatis-spring.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/mybatis/mybatis-spring.jar">
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
         <dependent-module archiveName="mybatis-3.3.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/mybatis/mybatis-3.3.1.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
@@ -80,6 +77,15 @@
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="org.springframework.web-3.1.2.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/spring/org.springframework.web-3.1.2.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="spring-aspects-4.1.6.RELEASE.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/spring/spring-aspects-4.1.6.RELEASE.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="aspectjweaver.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/spring/aspectjweaver.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mybatis-spring.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/mybatis/mybatis-spring.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="context-root" value="workflow"/>
