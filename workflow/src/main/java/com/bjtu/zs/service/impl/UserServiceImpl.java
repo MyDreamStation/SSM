@@ -38,14 +38,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
+//	@Transactional(rollbackFor=Exception.class)
 	public void editUser(User user) {
 		// TODO Auto-generated method stub
 		try {
 			userDao.editUser(user);
-//			throw new Exception();
 		} catch (Exception e) {
 			// TODO: handle exception(处理异常)
-			//TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
+			System.out.println("事务已回滚");
 			throw e;
 		}
 	}
