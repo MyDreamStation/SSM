@@ -31,7 +31,7 @@
 	<update id="editUser" parameterType="com.bjtu.zs.pojo.User">
 		update user
 		<set>
-			<if test="name != null">username=#{name},</if>
+			<if test="name != null">username=#{name}</if>
 			<if test="age != null">age=#{age}</if>
 		</set>
 		where id=#{id}

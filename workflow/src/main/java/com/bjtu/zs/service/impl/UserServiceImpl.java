@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 			// TODO: handle exception(处理异常)
 			TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
 			System.out.println("事务已回滚");
-			throw e;
+			throw new RuntimeException(e);
 		}
 	}
 

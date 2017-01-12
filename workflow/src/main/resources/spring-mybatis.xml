@@ -107,7 +107,7 @@
 	<!-- 只对业务逻辑(service)层实施事务 -->
 	<aop:config>
 		<aop:pointcut id="txPointcut"
-			expression="execution(*com.bjtu.zs.service.*.*(..))" />
+			expression="execution(* com.bjtu.zs.service.*.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
 
