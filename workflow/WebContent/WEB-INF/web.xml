@@ -59,7 +59,7 @@
             <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
      </listener>    
 	<welcome-file-list>
-		<welcome-file>jsp/test/test.jsp</welcome-file>
+		<welcome-file>pages/login/login.jsp</welcome-file>
 	</welcome-file-list>
 
 

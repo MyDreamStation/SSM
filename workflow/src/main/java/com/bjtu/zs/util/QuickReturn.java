@@ -50,7 +50,7 @@ public class QuickReturn {
 	 * @param list
 	 * @return
 	 */
-	public static Map<String, Object> mapOk(List list) {
+	public static Map<String, Object> mapOk(List<?> list) {
 		Map<String, Object> map = new HashMap<>();
 
 		map.put("size", list.size());

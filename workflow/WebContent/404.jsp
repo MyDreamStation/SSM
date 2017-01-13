@@ -109,7 +109,7 @@ p {
 		document.getElementById("num").innerHTML = num;
 		if (num < 0) {
 			document.getElementById("num").innerHTML = 0;
-			location.href = "jsp/login/login.jsp";
+			location.href = "pages/login/login.jsp";
 		}
 	}
 	setInterval("redirect()", 1000);

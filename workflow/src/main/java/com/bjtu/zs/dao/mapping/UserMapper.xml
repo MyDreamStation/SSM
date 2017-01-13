@@ -1,39 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.bjtu.zs.dao.UserDao">
-	<resultMap id="user" type="com.bjtu.zs.pojo.User">
-		<id column="id" property="id" jdbcType="INTEGER" />
-		<result column="username" property="name" jdbcType="VARCHAR" />
-		<result column="age" property="age" jdbcType="INTEGER" />
+	<resultMap type="com.bjtu.zs.pojo.User" id="user">
+		<id column="id" property="id" />
+		<result column="login_id" property="loginId" />
+		<result column="username" property="username" />
+		<result column="password" property="password" />
+		<result column="mail" property="mail" />
+		<result column="telephone" property="telephone" />
+		<result column="register_date" property="registerDate" />
+		<result column="last_login_date" property="lastLoginDate" />
+		<result column="last_login_ip" property="lastLoginIp" />
 	</resultMap>
-	<sql id="baseColumn">
-		id,username,age
-	</sql>
-	<select id="getAllUser" resultMap="user">
-		select * from user;
+	<select id="getUserByLoginId" parameterType="string" resultMap="user">
+		select * from user where login_id=#{loginId}
 	</select>
-
-	<select id="getUserByParam" parameterType="com.bjtu.zs.pojo.User"
-		resultMap="user">
-		select
-		<include refid="baseColumn"></include>
-		from user u
-		<where>
-			<if test="id != null">
-				u.id=#{id,jdbcType=INTEGER}
-			</if>
-			<if test="name != null">
-				and u.username=#{name,jdbcType=VARCHAR}
-			</if>
-		</where>
-	</select>
-
-	<update id="editUser" parameterType="com.bjtu.zs.pojo.User">
-		update user
-		<set>
-			<if test="name != null">username=#{name}</if>
-			<if test="age != null">age=#{age}</if>
-		</set>
-		where id=#{id}
-	</update>
 </mapper>
