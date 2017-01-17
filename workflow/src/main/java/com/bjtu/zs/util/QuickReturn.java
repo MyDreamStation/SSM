@@ -45,7 +45,7 @@ public class QuickReturn {
 	}
 
 	/**
-	 * 返回一个数组
+	 * 返回一个List
 	 * 
 	 * @param list
 	 * @return
@@ -75,5 +75,23 @@ public class QuickReturn {
 
 		return map;
 	}
-
+	/**
+	 * 返回两个列表
+	 * 
+	 * @param list1
+	 * @param list2
+	 * @return
+	 */
+	public static Map<String,Object> mapOk(List<?> list1,List<?> list2){
+		Map<String,Object> map =new HashMap<>();
+		
+		map.put("size1", list1.size());
+		map.put("size2", list2.size());
+		map.put("sizeAll", list1.size()+list2.size());
+		map.put("data1", list1);
+		map.put("data2", list2);
+		map.put("success", true);
+		
+		return null;
+	}
 }
