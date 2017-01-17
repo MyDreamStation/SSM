@@ -6,11 +6,16 @@
 	String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
 			+ path + "/";
 %>
-<html>
+<html > 
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+
+
+<script type="text/javascript"
+	src="json2.js"></script>
+
 </head>
 <body>
 <p>计数: <output id="result"></output></p>
@@ -20,8 +25,30 @@
 
 <script>
 var w;
-
-function startWorker()
+window.onload= function(){
+	if(typeof(Worker)!=="undefined")
+	  {
+	  if(typeof(w)=="undefined")
+	  {
+	  w=new Worker("http://localhost:8080/workflow/pages/test/demo_workers.js");
+	  }
+      // 定义需要提交给Worker线程的数据
+      var data = {
+          start: "1",
+          end: "2"
+      };
+      // 向Worker线程提交数据。
+      w.postMessage(JSON.stringify(data));
+	  w.onmessage = function (event) {
+	    document.getElementById("result").innerHTML=event.data;
+	    };
+	  }
+	else
+	  {
+	  document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
+	  }
+}
+/* function startWorker()
 {
 if(typeof(Worker)!=="undefined")
   {
@@ -37,7 +64,7 @@ else
   {
   document.getElementById("result").innerHTML="Sorry, your browser does not support Web Workers...";
   }
-}
+} */
 
 function stopWorker()
 { 
