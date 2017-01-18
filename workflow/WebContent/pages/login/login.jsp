@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <%
@@ -18,12 +19,7 @@
 
 <title>教学质量管理系统</title>
 
-<!-- 导入bootstrap的css -->
-<link href="resources/bootstrap/css/bootstrap.css" rel="stylesheet" />
 
-<!-- 导入fontawesome的css -->
-<link rel="stylesheet"
-	href="resources/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
 <!-- text fonts -->
 <link rel="stylesheet"
 	href="resources/assets/fonts/fonts.googleapis.com.css" />
@@ -349,6 +345,4 @@
 	</script>
 </body>
 <script type="text/javascript" src="pages/login/login.js"></script>
-<!-- 导入layer.js -->
-<script type="text/javascript" src="resources/layer/layer.js"></script>
 </html>
