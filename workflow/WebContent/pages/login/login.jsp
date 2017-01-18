@@ -108,7 +108,7 @@
 											</fieldset>
 										</form>
 
-<!-- 										<div class="social-or-login center">
+										<!-- 										<div class="social-or-login center">
 											<span class="bigger-110">第三方登录</span>
 										</div> -->
 
@@ -202,22 +202,27 @@
 											<fieldset>
 												<label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="email" class="form-control" placeholder="邮箱" /> <i
-														class="ace-icon fa fa-envelope"></i>
+														type="email" class="form-control" placeholder="邮箱" required/> <i
+														class="ace-icon fa fa-envelope" ></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="text" class="form-control" placeholder="用户名" /> <i
-														class="ace-icon fa fa-user"></i>
+														type="email" class="form-control" placeholder="手机号码" /> <i
+														class="ace-icon fa fa-phone"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="password" class="form-control" placeholder="密码" />
+														type="text" class="form-control" placeholder="用户名" required/> <i
+														class="ace-icon fa fa-user" ></i>
+												</span>
+												</label> <label class="block clearfix"> <span
+													class="block input-icon input-icon-right"> <input
+														type="password" class="form-control" placeholder="密码" required/>
 														<i class="ace-icon fa fa-lock"></i>
 												</span>
 												</label> <label class="block clearfix"> <span
 													class="block input-icon input-icon-right"> <input
-														type="password" class="form-control" placeholder="确认密码" />
+														type="password" class="form-control" placeholder="确认密码" required/>
 														<i class="ace-icon fa fa-retweet"></i>
 												</span>
 												</label> <label class="block"> <input type="checkbox"
@@ -233,7 +238,7 @@
 															class="bigger-110">重置</span>
 													</button>
 
-													<button type="button"
+													<button type="submit"
 														class="width-65 pull-right btn btn-sm btn-success">
 														<span class="bigger-110">注册</span> <i
 															class="ace-icon fa fa-arrow-right icon-on-right"></i>
