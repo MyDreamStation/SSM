@@ -6,7 +6,6 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/select2.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/chosen.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ui.jqgrid.min.css">
-<%-- <link rel="stylesheet" href=<%=request.getContextPath()%>/resources/assets/css/tipped.css></script> --%>
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-fonts.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-skins.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style">
@@ -26,9 +25,7 @@
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/elements.spinner.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/elements.treeview.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/elements.wizard.js"></script>
-<%-- <script src="<%=request.getContextPath()%>/resources/assets/js/ace/elements.aside.js"></script> --%>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.js"></script>
-<%-- <script src=<%=request.getContextPath()%>/resources/assets/js/ace/ace.ajax-content.js></script> --%>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.touch-drag.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.sidebar.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.sidebar-scroll-1.js"></script>
@@ -39,14 +36,17 @@
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.settings-skin.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.widget-on-reload.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace/ace.searchbox-autocomplete.js"></script>
-<%-- <script src="<%=request.getContextPath()%>/resources/assets/js/dataTables/jquery.dataTables.js"></script>
-<script src="<%=request.getContextPath()%>/resources/assets/js/dataTables/jquery.dataTables.bootstrap.js"></script> --%>
 <script src="<%=request.getContextPath()%>/resources/assets/js/date-time/bootstrap-datepicker.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/date-time/locales/bootstrap-datepicker.zh-CN.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/date-time/daterangepicker.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/date-time/moment.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/date-time/bootstrap-datetimepicker.min.js"></script>
+<%-- <script src=<%=request.getContextPath()%>/resources/assets/js/ace/ace.ajax-content.js></script> --%>
+<%-- <script src="<%=request.getContextPath()%>/resources/assets/js/ace/elements.aside.js"></script> --%>
+<%-- <script src="<%=request.getContextPath()%>/resources/assets/js/dataTables/jquery.dataTables.js"></script>
+<script src="<%=request.getContextPath()%>/resources/assets/js/dataTables/jquery.dataTables.bootstrap.js"></script> --%>
 <%-- <script src="<%=request.getContextPath()%>/resources/assets/js/tipped.js"></script> --%>
+<%-- <link rel="stylesheet" href=<%=request.getContextPath()%>/resources/assets/css/tipped.css></script> --%>
 <!-- 导入layer.js -->
 <script type="text/javascript" src="resources/layer/layer.js"></script>
 
