@@ -12,7 +12,12 @@
 		<result column="last_login_date" property="lastLoginDate" />
 		<result column="last_login_ip" property="lastLoginIp" />
 	</resultMap>
+	<sql id="base">
+		login_id,username,password,mail,telephone
+	</sql>
 	<select id="getUserByLoginId" parameterType="string" resultMap="user">
-		select * from user where login_id=#{loginId}
+		select
+		<include refid="base" />
+		from user where login_id=#{loginId}
 	</select>
 </mapper>
