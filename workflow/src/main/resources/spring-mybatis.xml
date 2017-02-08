@@ -135,4 +135,43 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
 	</aop:config>
 
+
+	<!-- 下面开始对activiti工作流进行整合 -->
+
+
+	<!-- 流程引擎配置信息 -->
+	<bean id="processEngineConfiguration" class="org.activiti.spring.SpringProcessEngineConfiguration">
+		<property name="dataSource" ref="dataSource" />
+		<property name="databaseType" value="mysql" />
+		<!-- 事务管理 -->
+		<property name="transactionManager" ref="transactionManager" />
+		<!-- 是否更新数据库实例 -->
+		<property name="databaseSchemaUpdate" value="true" />
+		<!-- 是否使用job executor -->
+		<property name="jobExecutorActivate" value="false" />
+
+		<!-- 流程模型的自动部署路径 -->
+		<property name="deploymentResources"
+			value="classpath*:/org/activiti/spring/test/autodeployment/autodeploy.*.bpmn20.xml" />
+
+		<!-- 自动部署的模式 -->
+		<property name="deploymentMode" value="single-resource" />
+	</bean>
+
+	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
+		<property name="processEngineConfiguration" ref="processEngineConfiguration" />
+	</bean>
+
+
+	<!-- 通过流程引擎获取系统所需的相关服务 -->
+	<bean id="repositoryService" factory-bean="processEngine"
+		factory-method="getRepositoryService" />
+	<bean id="runtimeService" factory-bean="processEngine"
+		factory-method="getRuntimeService" />
+	<bean id="taskService" factory-bean="processEngine"
+		factory-method="getTaskService" />
+	<bean id="historyService" factory-bean="processEngine"
+		factory-method="getHistoryService" />
+	<bean id="managementService" factory-bean="processEngine"
+		factory-method="getManagementService" />
 </beans>

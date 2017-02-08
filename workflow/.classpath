@@ -2,7 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src/main/java"/>
 	<classpathentry kind="src" path="src/main/resources"/>
-	<classpathentry kind="src" path="src/test"/>
+	<classpathentry excluding="resources/" kind="src" path="src/test"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
@@ -41,5 +41,31 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dbcp/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dbcp/commons-pool-1.5.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tag/jsp-api-2.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-engine-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-image-generator-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-bpmn-converter-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-bpmn-layout-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-bpmn-model-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-camel-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-cdi.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-common-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-crystalball-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-cxf-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-diagram-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-explorer-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-jmx-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-json-converter-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-ldap-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-modeler-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-mule-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-osgi-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-process-validation-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-simple-workflow-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-spring-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/joda/joda-time-2.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/common/commons-lang3-3.3.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

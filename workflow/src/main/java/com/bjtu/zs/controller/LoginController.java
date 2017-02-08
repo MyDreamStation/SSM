@@ -24,8 +24,8 @@ public class LoginController {
 	 * 用户登录控制器
 	 * 
 	 * @param session
-	 * @param username
-	 * @param password
+	 * @param loginId 账号（可以是邮箱地址）
+	 * @param password 密码
 	 * @return
 	 */
 	@RequestMapping("/login")
@@ -33,6 +33,8 @@ public class LoginController {
 	public Map<String, Object> login(HttpSession session, String loginId, String password) {
 		User user = null;
 		user = userService.getUserByLoginId(loginId);
+		
+		
 		if (user != null) {
 			System.out.println(user.toString());
 			if (user.getPassword().equals(password)) {

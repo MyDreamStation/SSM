@@ -94,6 +94,84 @@
         <dependent-module archiveName="commons-pool-1.5.6.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/dbcp/commons-pool-1.5.6.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="activiti-engine-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-engine-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-log4j12-1.7.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/log/slf4j-log4j12-1.7.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="slf4j-api-1.7.7.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/log/slf4j-api-1.7.7.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-image-generator-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-image-generator-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-mule-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-mule-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-diagram-rest-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-diagram-rest-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-explorer-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-explorer-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-cdi.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-cdi.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-ldap-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-ldap-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-bpmn-converter-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-bpmn-converter-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-modeler-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-modeler-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-process-validation-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-process-validation-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-spring-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-spring-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-jmx-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-jmx-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-cxf-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-cxf-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-osgi-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-osgi-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-common-rest-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-common-rest-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-simple-workflow-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-simple-workflow-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-bpmn-layout-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-bpmn-layout-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-camel-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-camel-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-rest-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-rest-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-bpmn-model-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-bpmn-model-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-json-converter-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-json-converter-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="activiti-crystalball-5.22.0.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/activiti/activiti-crystalball-5.22.0.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="joda-time-2.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/joda/joda-time-2.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="commons-lang3-3.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/common/commons-lang3-3.3.2.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="workflow"/>
         <property name="java-output-path" value="/workflow/build/classes"/>
     </wb-module>
