@@ -152,7 +152,7 @@
 
 		<!-- 流程模型的自动部署路径 -->
 		<property name="deploymentResources"
-			value="classpath*:/org/activiti/spring/test/autodeployment/autodeploy.*.bpmn20.xml" />
+			value="classpath*:/org/activiti/spring/autodeployment/autodeploy.*.bpmn20.xml" />
 
 		<!-- 自动部署的模式 -->
 		<property name="deploymentMode" value="single-resource" />
@@ -164,14 +164,23 @@
 
 
 	<!-- 通过流程引擎获取系统所需的相关服务 -->
+	
+	<!--  -->
 	<bean id="repositoryService" factory-bean="processEngine"
 		factory-method="getRepositoryService" />
+	<!--  -->
 	<bean id="runtimeService" factory-bean="processEngine"
 		factory-method="getRuntimeService" />
+	<!--  -->
 	<bean id="taskService" factory-bean="processEngine"
 		factory-method="getTaskService" />
+	<!--  -->
+	<bean id="formService" factory-bean="processEngine"
+		factory-method="getFormService" />
+	<!--  -->
 	<bean id="historyService" factory-bean="processEngine"
 		factory-method="getHistoryService" />
+	<!--  -->
 	<bean id="managementService" factory-bean="processEngine"
 		factory-method="getManagementService" />
 </beans>

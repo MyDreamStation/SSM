@@ -1,4 +1,4 @@
-package test;
+package com.bjtu.zs.controller;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -7,88 +7,105 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 
 import org.activiti.engine.FormService;
 import org.activiti.engine.HistoryService;
 import org.activiti.engine.ProcessEngine;
-import org.activiti.engine.ProcessEngineConfiguration;
 import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.form.FormData;
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.history.HistoricActivityInstance;
-import org.activiti.engine.impl.cfg.StandaloneProcessEngineConfiguration;
 import org.activiti.engine.impl.form.DateFormType;
 import org.activiti.engine.impl.form.LongFormType;
 import org.activiti.engine.impl.form.StringFormType;
-import org.activiti.engine.repository.Deployment;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-public class OnboardingRequest {
-	public static void main(String[] args) throws ParseException {
+import com.bjtu.zs.util.QuickReturn;
 
-		//创建一个流程引擎，并配置mysql数据库
-		ProcessEngineConfiguration cfg = new StandaloneProcessEngineConfiguration()
-				.setJdbcUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8")
-				.setJdbcUsername("root").setJdbcPassword("root").setJdbcDriver("com.mysql.jdbc.Driver")
-				.setDatabaseSchemaUpdate(ProcessEngineConfiguration.DB_SCHEMA_UPDATE_TRUE);
-		ProcessEngine processEngine = cfg.buildProcessEngine();
-		
-		//显示流程引擎的版本信息
+@Controller
+@RequestMapping("/activiti")
+public class ActivitiTestController {
+
+	/**
+	 * 用于测试activiti与spring整合，是否创建了一个流程引擎
+	 */
+	@Autowired
+	private ProcessEngine processEngine;
+
+	@Autowired
+	private RuntimeService runtimeService;
+
+	/**
+	 * This service introduces the concept of a start form and a task form. A
+	 * start form is a form that is shown to the user before the process
+	 * instance is started, while a task form is the form that is displayed when
+	 * a user wants to complete a form. Activiti allows to define these forms in
+	 * the BPMN 2.0 process definition
+	 */
+	@Autowired
+	private FormService formService;
+
+	@Autowired
+	private TaskService taskService;
+
+	@Autowired
+	private HistoryService historyService;// 历史流程信息
+
+	@Autowired
+	private RepositoryService repositoryService;
+
+	@RequestMapping("/test")
+	@ResponseBody
+	public Map<String, Object> test(String info) throws ParseException {
+
+		// 输出流程引擎的版本信息
 		String pName = processEngine.getName();
 		String ver = ProcessEngine.VERSION;
 		System.out.println("ProcessEngine [" + pName + "] Version: [" + ver + "]");
+		// 获取流程中的流程模型数目
+		long count = repositoryService.createProcessDefinitionQuery().processDefinitionKey("onboarding").count();
+		System.out.println("一共有:" + count + "个流程实例");
 
-		//加载给定的BPMN模型，并将它发布到activiti流程引擎中，这里的配置文件的扩展名通常为.bpmn20.xml或.bpmn
-		RepositoryService repositoryService = processEngine.getRepositoryService();
-		Deployment deployment = repositoryService.createDeployment()
-				.addClasspathResource("hello_activiti_bpmConfiguration_demo.bpmn20.xml").deploy();
-		//获取已发布的流程模型
+		// 获取流程定义
 		ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery()
-				.deploymentId(deployment.getId()).singleResult();
-		System.out.println("Found process definition [" + processDefinition.getName() + "] with id ["
-				+ processDefinition.getId() + "]");
-		
-		
-		//开始一个名为onboarding的流程实例
-	    RuntimeService runtimeService = processEngine.getRuntimeService();
-	    ProcessInstance processInstance = runtimeService
-	        .startProcessInstanceByKey("onboarding");
-	    System.out.println("Onboarding process started with process instance id [" 
-	        + processInstance.getProcessInstanceId()
-	        + "] key [" + processInstance.getProcessDefinitionKey() + "]");
+				.processDefinitionKey("onboarding").singleResult();
 
-	    
-		TaskService taskService = processEngine.getTaskService();
-		FormService formService = processEngine.getFormService();
-		HistoryService historyService = processEngine.getHistoryService();//获取流程历史
+		// 获取名为onboarding的流程实例,并开启
+		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey("onboarding");
+		// 输出流程实例的基本信息
+		System.out.println("Onboarding process started with process instance id ["
+				+ processInstance.getProcessInstanceId() + "] key [" + processInstance.getProcessDefinitionKey() + "]");
 
-		Scanner scanner = new Scanner(System.in);
-		while (processInstance != null && !processInstance.isEnded()) {
+		if (processInstance != null && !processInstance.isEnded()) {
 			List<Task> tasks = taskService.createTaskQuery().taskCandidateGroup("managers").list();
 			System.out.println("Active outstanding tasks: [" + tasks.size() + "]");
 			for (int i = 0; i < tasks.size(); i++) {
 				Task task = tasks.get(i);
 				System.out.println("Processing Task [" + task.getName() + "]");
 				Map<String, Object> variables = new HashMap<String, Object>();
+				//通过任务id获取要提交的数据
 				FormData formData = formService.getTaskFormData(task.getId());
 				for (FormProperty formProperty : formData.getFormProperties()) {
 					if (StringFormType.class.isInstance(formProperty.getType())) {
 						System.out.println(formProperty.getName() + "?");
-						String value = scanner.nextLine();
+						String value = info;
 						variables.put(formProperty.getId(), value);
 					} else if (LongFormType.class.isInstance(formProperty.getType())) {
 						System.out.println(formProperty.getName() + "? (Must be a whole number)");
-						Long value = Long.valueOf(scanner.nextLine());
+						Long value = Long.valueOf(info);
 						variables.put(formProperty.getId(), value);
 					} else if (DateFormType.class.isInstance(formProperty.getType())) {
 						System.out.println(formProperty.getName() + "? (Must be a date m/d/yy)");
 						DateFormat dateFormat = new SimpleDateFormat("m/d/yy");
-						Date value = dateFormat.parse(scanner.nextLine());
+						Date value = dateFormat.parse(info);
 						variables.put(formProperty.getId(), value);
 					} else {
 						System.out.println("<form type not supported>");
@@ -130,7 +147,7 @@ public class OnboardingRequest {
 			processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(processInstance.getId())
 					.singleResult();
 		}
-		scanner.close();
-		
+
+		return QuickReturn.mapOk("success");
 	}
 }
