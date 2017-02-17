@@ -1,11 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
-	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry excluding="**/*.java|diagrams/" kind="src" path="src/main/resources"/>
 	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
 	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src/main/resources/diagrams"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Activiti Designer Extensions"/>
+	<classpathentry kind="lib" path="lib/activiti-bpmn-converter-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-bpmn-layout-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-bpmn-model-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-camel-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-cdi.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-common-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-crystalball-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-cxf-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-diagram-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-engine-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-explorer-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-image-generator-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-jmx-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-json-converter-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-ldap-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-modeler-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-mule-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-osgi-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-process-validation-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-simple-workflow-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/activiti-spring-5.22.0.jar"/>
+	<classpathentry kind="lib" path="lib/mysql-connector-java-5.1.40-bin.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
