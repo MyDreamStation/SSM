@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
+	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry including="**/*.java" kind="src" output="target/test-classes" path="src/test/java"/>
+	<classpathentry excluding="**/*.java" kind="src" output="target/test-classes" path="src/test/resources"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Activiti Designer Extensions"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="src/lib/activiti-bpmn-converter-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-bpmn-layout-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-bpmn-model-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-camel-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-cdi.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-common-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-crystalball-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-cxf-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-diagram-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-engine-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-explorer-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-image-generator-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-jmx-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-json-converter-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-ldap-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-modeler-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-mule-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-osgi-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-process-validation-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-rest-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-simple-workflow-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/activiti-spring-5.22.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/mysql-connector-java-5.1.40-bin.jar"/>
+	<classpathentry kind="lib" path="src/lib/log4j.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="src/lib/slf4j-log4j12-1.7.7.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/aspectjweaver.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/org.springframework.web-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/org.springframework.web.servlet-3.1.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/servlet-api.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-aop-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-aspects-4.1.6.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-beans-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-context-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-context-support-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-core-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-expression-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-jdbc-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-orm-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-tx-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-web-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/spring/spring-webmvc-3.2.2.RELEASE.jar"/>
+	<classpathentry kind="lib" path="src/lib/common/aopalliance.jar"/>
+	<classpathentry kind="lib" path="src/lib/common/commons-lang3-3.3.2.jar"/>
+	<classpathentry kind="lib" path="src/lib/common/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="src/lib/mybatis-3.3.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/mybatis-spring-1.3.0.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson/jackson-annotations-2.2.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson/jackson-core-2.2.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson/jackson-core-asl-1.8.8.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson/jackson-databind-2.2.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson/jackson-mapper-asl-1.8.8.jar"/>
+	<classpathentry kind="lib" path="src/lib/jackson/jackson-module-jaxb-annotations-2.2.1.jar"/>
+	<classpathentry kind="lib" path="src/lib/joda/joda-time-2.1.jar"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>
