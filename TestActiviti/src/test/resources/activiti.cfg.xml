@@ -6,7 +6,8 @@
 				http://www.springframework.org/schema/context  
                 http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-<context:property-placeholder location="classpath:mailConfiguration.properties"/>
+	<context:property-placeholder location="classpath:mailConfiguration.properties"
+		system-properties-mode="FALLBACK" />
 	<bean id="processEngineConfiguration"
 		class="org.activiti.engine.impl.cfg.StandaloneInMemProcessEngineConfiguration">
 		<property name="jdbcUrl"
@@ -21,11 +22,11 @@
 
 
 		<property name="mailServerHost" value="${mailServerHost}"></property>
-		<property name="mailServerPort" value="${mailServerPort}"></property>
+		<property name="mailServerPort" value="587"></property>
 		<property name="mailServerUsername" value="${mailServerUsername}"></property>
 		<property name="mailServerPassword" value="${mailServerPassword}"></property>
-		<property name="mailServerUseSSL" value="${mailServerUseSSL}"></property>
-<!-- 		<property name="mailServerDefaultFrom" value="${mailServerDefaultFrom}"></property>
-		<property name="mailServerUseTLS" value="${mailServerUseTLS}"></property> -->
+		<property name="mailServerUseSSL" value="true"></property>
+		<!-- <property name="mailServerDefaultFrom" value="${mailServerDefaultFrom}"></property> 
+			<property name="mailServerUseTLS" value="${mailServerUseTLS}"></property> -->
 	</bean>
 </beans>
