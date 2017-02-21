@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
   <process id="testMailProcess" name="Mail Process" isExecutable="true">
-    <startEvent id="startevent1" name="Start"></startEvent>
-    <userTask id="enter data" name="enter the content of email">
+    <startEvent id="startevent1" name="Start" activiti:initiator="initiator">
       <extensionElements>
-        <activiti:formProperty id="content" name="content" type="string" required="true">
-          <activiti:value id="demo1" name="hello girls"></activiti:value>
-          <activiti:value id="demo2" name="hello boys"></activiti:value>
-        </activiti:formProperty>
+        <activiti:formProperty id="approver" name="approver" type="user"></activiti:formProperty>
+      </extensionElements>
+    </startEvent>
+    <userTask id="enterData" name="enter the content of email" activiti:assignee="${approver}">
+      <extensionElements>
+        <activiti:formProperty id="content" name="content" type="string" required="true"></activiti:formProperty>
       </extensionElements>
     </userTask>
-    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="enter data"></sequenceFlow>
-    <serviceTask id="mailtask" name="Mail Task" activiti:type="mail">
+    <sequenceFlow id="flow1" sourceRef="startevent1" targetRef="enterData"></sequenceFlow>
+    <serviceTask id="mailTask" name="Mail Task" activiti:type="mail">
       <extensionElements>
         <activiti:field name="to">
           <activiti:string><![CDATA[631710518@qq.com]]></activiti:string>
@@ -25,24 +26,27 @@
         <activiti:field name="cc">
           <activiti:string><![CDATA[13281075@bjtu.edu.cn]]></activiti:string>
         </activiti:field>
+        <activiti:field name="text">
+          <activiti:expression><![CDATA[${content}]]></activiti:expression>
+        </activiti:field>
         <activiti:field name="html">
           <activiti:expression><![CDATA[${content}]]></activiti:expression>
         </activiti:field>
       </extensionElements>
     </serviceTask>
-    <sequenceFlow id="flow2" sourceRef="enter data" targetRef="mailtask"></sequenceFlow>
+    <sequenceFlow id="flow2" sourceRef="enterData" targetRef="mailTask"></sequenceFlow>
     <endEvent id="endevent1" name="End"></endEvent>
-    <sequenceFlow id="flow3" sourceRef="mailtask" targetRef="endevent1"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="mailTask" targetRef="endevent1"></sequenceFlow>
   </process>
   <bpmndi:BPMNDiagram id="BPMNDiagram_testMailProcess">
     <bpmndi:BPMNPlane bpmnElement="testMailProcess" id="BPMNPlane_testMailProcess">
       <bpmndi:BPMNShape bpmnElement="startevent1" id="BPMNShape_startevent1">
         <omgdc:Bounds height="35.0" width="35.0" x="110.0" y="163.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="enter data" id="BPMNShape_enter data">
-        <omgdc:Bounds height="81.0" width="121.0" x="190.0" y="140.0"></omgdc:Bounds>
+      <bpmndi:BPMNShape bpmnElement="enterData" id="BPMNShape_enterData">
+        <omgdc:Bounds height="81.0" width="121.0" x="180.0" y="135.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="mailtask" id="BPMNShape_mailtask">
+      <bpmndi:BPMNShape bpmnElement="mailTask" id="BPMNShape_mailTask">
         <omgdc:Bounds height="55.0" width="105.0" x="356.0" y="153.0"></omgdc:Bounds>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
@@ -50,10 +54,12 @@
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
         <omgdi:waypoint x="145.0" y="180.0"></omgdi:waypoint>
-        <omgdi:waypoint x="190.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="180.0" y="175.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
-        <omgdi:waypoint x="311.0" y="180.0"></omgdi:waypoint>
+        <omgdi:waypoint x="301.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="328.0" y="175.0"></omgdi:waypoint>
+        <omgdi:waypoint x="328.0" y="180.0"></omgdi:waypoint>
         <omgdi:waypoint x="356.0" y="180.0"></omgdi:waypoint>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">

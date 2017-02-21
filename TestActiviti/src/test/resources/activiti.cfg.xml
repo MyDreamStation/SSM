@@ -19,9 +19,13 @@
 
 		<property name="jobExecutorActivate" value="true" />
 
-		<!-- <property name="mailServerHost" value="mail.my-corp.com" /> <property 
-			name="mailServerPort" value="5025" /> -->
 
-		<property name="mailServerHost"></property>
+		<property name="mailServerHost" value="${mailServerHost}"></property>
+		<property name="mailServerPort" value="${mailServerPort}"></property>
+		<property name="mailServerUsername" value="${mailServerUsername}"></property>
+		<property name="mailServerPassword" value="${mailServerPassword}"></property>
+		<property name="mailServerUseSSL" value="${mailServerUseSSL}"></property>
+<!-- 		<property name="mailServerDefaultFrom" value="${mailServerDefaultFrom}"></property>
+		<property name="mailServerUseTLS" value="${mailServerUseTLS}"></property> -->
 	</bean>
 </beans>
