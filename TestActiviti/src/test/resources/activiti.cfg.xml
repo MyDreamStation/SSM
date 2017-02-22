@@ -21,10 +21,10 @@
 		<property name="jobExecutorActivate" value="true" />
 
 
-		<property name="mailServerHost" value="${mailServerHost}"></property>
+		<property name="mailServerHost" value="smtp.qq.com"></property>
 		<property name="mailServerPort" value="587"></property>
-		<property name="mailServerUsername" value="${mailServerUsername}"></property>
-		<property name="mailServerPassword" value="${mailServerPassword}"></property>
+		<property name="mailServerUsername" value="631710518@qq.com"></property>
+		<property name="mailServerPassword" value="rpyiktvhpshbbbih"></property>
 		<property name="mailServerUseSSL" value="true"></property>
 		<!-- <property name="mailServerDefaultFrom" value="${mailServerDefaultFrom}"></property> 
 			<property name="mailServerUseTLS" value="${mailServerUseTLS}"></property> -->

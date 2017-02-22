@@ -101,6 +101,7 @@ public class TestMailTask {
 					.singleResult();
 			
 		}
+		in.close();
 	}
 	
 }
