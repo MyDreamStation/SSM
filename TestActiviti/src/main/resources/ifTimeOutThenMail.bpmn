@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="ifTimeOutThenMail" name="ifTimeOutThenMail" isExecutable="true">
+    <documentation>如果子流程超时则发送一封邮件给用户</documentation>
+    <startEvent id="start" name="Start"></startEvent>
+    <subProcess id="subprocessOfchoice" name="Sub Process Of Choice">
+      <documentation>user make Choice</documentation>
+      <startEvent id="subStart" name="Start">
+        <documentation>please choose (1 or 2)：</documentation>
+      </startEvent>
+      <exclusiveGateway id="exclusivegateway" name="Exclusive Gateway">
+        <documentation>choice</documentation>
+      </exclusiveGateway>
+      <userTask id="enterContentOfEmail" name="enterContentOfEmail">
+        <documentation>please enter the content of email.</documentation>
+        <extensionElements>
+          <activiti:formProperty id="content" name="content" type="string" required="true"></activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="choice1" name="choice1" sourceRef="exclusivegateway" targetRef="enterContentOfEmail">
+        <documentation>user choose 1.</documentation>
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${choice == 1}]]></conditionExpression>
+      </sequenceFlow>
+      <endEvent id="errorendevent" name="ErrorEnd">
+        <documentation>you choose wrong!</documentation>
+        <errorEventDefinition errorRef="errorend"></errorEventDefinition>
+      </endEvent>
+      <sequenceFlow id="choice2" name="choice2" sourceRef="exclusivegateway" targetRef="errorendevent">
+        <documentation>user choose 2.</documentation>
+        <conditionExpression xsi:type="tFormalExpression"><![CDATA[${choice == 2}]]></conditionExpression>
+      </sequenceFlow>
+      <endEvent id="subend" name="subend"></endEvent>
+      <serviceTask id="generalMail" name="generalMail" activiti:type="mail">
+        <documentation>congratulations! you choose the right!</documentation>
+        <extensionElements>
+          <activiti:field name="to">
+            <activiti:string><![CDATA[13281075@bjtu.edu.cn]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="from">
+            <activiti:string><![CDATA[631710518@qq.com]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="subject">
+            <activiti:string><![CDATA[恭喜做出了你正确选择]]></activiti:string>
+          </activiti:field>
+          <activiti:field name="html">
+            <activiti:expression><![CDATA[恭喜做出了你正确选择,以下是您的邮件内容：
+
+${content}]]></activiti:expression>
+          </activiti:field>
+          <activiti:field name="charset">
+            <activiti:string><![CDATA[utf-8]]></activiti:string>
+          </activiti:field>
+        </extensionElements>
+      </serviceTask>
+      <sequenceFlow id="flow9" sourceRef="enterContentOfEmail" targetRef="generalMail"></sequenceFlow>
+      <sequenceFlow id="flow10" sourceRef="generalMail" targetRef="subend"></sequenceFlow>
+      <userTask id="enterData0" name="enter a choice">
+        <documentation>please choose (1 or 2)：</documentation>
+        <extensionElements>
+          <activiti:formProperty id="choice" name="choice" type="long" required="true">
+            <activiti:value id="1" name="ok"></activiti:value>
+            <activiti:value id="2" name="error"></activiti:value>
+          </activiti:formProperty>
+        </extensionElements>
+      </userTask>
+      <sequenceFlow id="flow14" sourceRef="subStart" targetRef="enterData0"></sequenceFlow>
+      <sequenceFlow id="flow15" sourceRef="enterData0" targetRef="exclusivegateway"></sequenceFlow>
+    </subProcess>
+    <sequenceFlow id="flow1" sourceRef="start" targetRef="subprocessOfchoice"></sequenceFlow>
+    <boundaryEvent id="boundarytimer" name="Timer" attachedToRef="subprocessOfchoice" cancelActivity="true">
+      <documentation>Attention!Time out!</documentation>
+      <timerEventDefinition>
+        <timeDuration>PT2M</timeDuration>
+      </timerEventDefinition>
+    </boundaryEvent>
+    <serviceTask id="timeOutMail" name="timeOutMail" activiti:type="mail">
+      <documentation>aoooo!Time out!</documentation>
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[13281075@bjtu.edu.cn]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[631710518@qq.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[抱歉，您已超时！]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[抱歉，您已超时！]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="charset">
+          <activiti:string><![CDATA[utf-8]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="boundarytimer" targetRef="timeOutMail"></sequenceFlow>
+    <endEvent id="end" name="End"></endEvent>
+    <sequenceFlow id="flow8" sourceRef="subprocessOfchoice" targetRef="end"></sequenceFlow>
+    <boundaryEvent id="boundaryerror" name="Error" attachedToRef="subprocessOfchoice">
+      <documentation>catch wrong choice</documentation>
+      <errorEventDefinition errorRef="errorend"></errorEventDefinition>
+    </boundaryEvent>
+    <serviceTask id="errorMail" name="errorMail" activiti:type="mail">
+      <documentation>you choose wrong</documentation>
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:string><![CDATA[13281075@bjtu.edu.cn]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:string><![CDATA[631710518@qq.com]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[抱歉，您选错了哦]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[抱歉，您选错了哦~]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="charset">
+          <activiti:string><![CDATA[utf-8]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow11" sourceRef="boundaryerror" targetRef="errorMail"></sequenceFlow>
+    <endEvent id="timeOutEnd" name="timeOutEnd">
+      <documentation>time out end</documentation>
+    </endEvent>
+    <sequenceFlow id="flow12" sourceRef="timeOutMail" targetRef="timeOutEnd"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow13" sourceRef="errorMail" targetRef="endevent1"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_ifTimeOutThenMail">
+    <bpmndi:BPMNPlane bpmnElement="ifTimeOutThenMail" id="BPMNPlane_ifTimeOutThenMail">
+      <bpmndi:BPMNShape bpmnElement="start" id="BPMNShape_start">
+        <omgdc:Bounds height="35.0" width="35.0" x="110.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="subprocessOfchoice" id="BPMNShape_subprocessOfchoice">
+        <omgdc:Bounds height="191.0" width="531.0" x="210.0" y="52.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="subStart" id="BPMNShape_subStart">
+        <omgdc:Bounds height="35.0" width="35.0" x="220.0" y="132.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="exclusivegateway" id="BPMNShape_exclusivegateway">
+        <omgdc:Bounds height="40.0" width="40.0" x="300.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="enterContentOfEmail" id="BPMNShape_enterContentOfEmail">
+        <omgdc:Bounds height="55.0" width="105.0" x="400.0" y="122.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="errorendevent" id="BPMNShape_errorendevent">
+        <omgdc:Bounds height="35.0" width="35.0" x="303.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="subend" id="BPMNShape_subend">
+        <omgdc:Bounds height="35.0" width="35.0" x="690.0" y="133.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="generalMail" id="BPMNShape_generalMail">
+        <omgdc:Bounds height="55.0" width="105.0" x="550.0" y="122.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="enterData0" id="BPMNShape_enterData0">
+        <omgdc:Bounds height="55.0" width="105.0" x="268.0" y="60.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundarytimer" id="BPMNShape_boundarytimer">
+        <omgdc:Bounds height="30.0" width="30.0" x="280.0" y="232.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundaryerror" id="BPMNShape_boundaryerror">
+        <omgdc:Bounds height="30.0" width="30.0" x="420.0" y="232.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="timeOutMail" id="BPMNShape_timeOutMail">
+        <omgdc:Bounds height="55.0" width="105.0" x="242.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="end" id="BPMNShape_end">
+        <omgdc:Bounds height="35.0" width="35.0" x="790.0" y="130.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="errorMail" id="BPMNShape_errorMail">
+        <omgdc:Bounds height="55.0" width="105.0" x="382.0" y="320.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="timeOutEnd" id="BPMNShape_timeOutEnd">
+        <omgdc:Bounds height="35.0" width="35.0" x="277.0" y="400.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="532.0" y="330.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="choice1" id="BPMNEdge_choice1">
+        <omgdi:waypoint x="340.0" y="150.0"></omgdi:waypoint>
+        <omgdi:waypoint x="400.0" y="149.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="38.0" x="340.0" y="150.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="choice2" id="BPMNEdge_choice2">
+        <omgdi:waypoint x="320.0" y="170.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="200.0"></omgdi:waypoint>
+        <bpmndi:BPMNLabel>
+          <omgdc:Bounds height="14.0" width="38.0" x="251.0" y="186.0"></omgdc:Bounds>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow9" id="BPMNEdge_flow9">
+        <omgdi:waypoint x="505.0" y="149.0"></omgdi:waypoint>
+        <omgdi:waypoint x="550.0" y="149.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow10" id="BPMNEdge_flow10">
+        <omgdi:waypoint x="655.0" y="149.0"></omgdi:waypoint>
+        <omgdi:waypoint x="690.0" y="150.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow14" id="BPMNEdge_flow14">
+        <omgdi:waypoint x="237.0" y="132.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="115.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow15" id="BPMNEdge_flow15">
+        <omgdi:waypoint x="320.0" y="115.0"></omgdi:waypoint>
+        <omgdi:waypoint x="320.0" y="130.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="145.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="210.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="295.0" y="262.0"></omgdi:waypoint>
+        <omgdi:waypoint x="294.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow8" id="BPMNEdge_flow8">
+        <omgdi:waypoint x="741.0" y="147.0"></omgdi:waypoint>
+        <omgdi:waypoint x="790.0" y="147.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow11" id="BPMNEdge_flow11">
+        <omgdi:waypoint x="435.0" y="262.0"></omgdi:waypoint>
+        <omgdi:waypoint x="434.0" y="320.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow12" id="BPMNEdge_flow12">
+        <omgdi:waypoint x="294.0" y="375.0"></omgdi:waypoint>
+        <omgdi:waypoint x="294.0" y="400.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow13" id="BPMNEdge_flow13">
+        <omgdi:waypoint x="487.0" y="347.0"></omgdi:waypoint>
+        <omgdi:waypoint x="532.0" y="347.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>
