@@ -148,7 +148,7 @@
 		<!-- 是否更新数据库实例 -->
 		<property name="databaseSchemaUpdate" value="true" />
 		<!-- 是否使用job executor -->
-		<property name="jobExecutorActivate" value="true" />
+		<property name="jobExecutorActivate" value="false" />
 
 		<!-- 流程模型的自动部署路径 -->
 		<property name="deploymentResources"
