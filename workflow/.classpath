@@ -41,7 +41,7 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dbcp/commons-dbcp-1.4.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/dbcp/commons-pool-1.5.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tag/jsp-api-2.0.jar"/>
-	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-engine-5.22.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-engine-5.22.0.jar" sourcepath="C:/Users/Administrator/Desktop/activiti-5.22.0/libs/activiti-engine-5.22.0-sources.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log/slf4j-api-1.7.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/log/slf4j-log4j12-1.7.7.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/activiti/activiti-image-generator-5.22.0.jar"/>

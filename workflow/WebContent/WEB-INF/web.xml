@@ -23,6 +23,22 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	<!-- 登录过滤器 -->
+	<filter>
+		<filter-name>loginFilter</filter-name>
+		<filter-class>com.bjtu.zs.util.filter.LoginFilter</filter-class>
+		<init-param>
+			<description>不需要验证的路径</description>
+			<param-name>excludedPages</param-name>
+			<param-value>/page/login/login.jsp,/activiti/test</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>loginFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
 	<!-- Spring监听器 -->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
