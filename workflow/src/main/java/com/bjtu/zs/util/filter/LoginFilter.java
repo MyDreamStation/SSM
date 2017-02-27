@@ -48,7 +48,7 @@ public class LoginFilter implements Filter {
 		String contextPath = request.getContextPath();
 		String servletPath = request.getServletPath();
 
-		String user = (String) session.getAttribute("user");
+		Object user = session.getAttribute("user");
 
 		if (null != excludedPagesArray) {
 			// 排除不需要拦截的页面
@@ -56,7 +56,7 @@ public class LoginFilter implements Filter {
 				// TODO 没看懂
 				// 如果当前请求的页面是登录页面
 				if (RegUtils.isMatch("(?i)^.*login\\.jsp$", servletPath)) {
-					isExcludedPage = true;
+//					isExcludedPage = true;
 					continue;
 				}
 				// 如果当前请求的页面是不需要拦截的页面，则标记为不拦截
@@ -74,11 +74,20 @@ public class LoginFilter implements Filter {
 			chain.doFilter(request, response);
 			return;
 		} else {// 需要拦截的页面则判断是否登录
-			if (null == user) {
+			if (null == user && !"/pages/login/login.jsp".equals(servletPath)) {
 				response.sendRedirect(contextPath+"/pages/login/login.jsp");
+//				if (RegUtils.isMatch("(?i)^.*\\.jsp$", servletPath)) {
+//					response.sendRedirect(contextPath + "/pages/login/login.jsp");
+//				} else if (RegUtils.isMatch("(?i)^.*\\.(js|css|png|jpg|icon|woff)$", servletPath)) {
+//					chain.doFilter(req, rep);
+//				} 
+//				else if (RegUtils.isMatch("^/$", servletPath)) {
+//					response.sendRedirect(contextPath + "/pages/login/login.jsp");
+//				}
 			} else {
 				chain.doFilter(request, response);
 			}
+
 
 		}
 	}
@@ -95,5 +104,17 @@ public class LoginFilter implements Filter {
 		}
 		return;
 	}
+	
+    /** 
+     * 判断是否为Ajax请求 
+     * 
+     * @param request HttpServletRequest 
+     * @return 是true, 否false 
+     */  
+    public static boolean isAjaxRequest(HttpServletRequest request) {  
+//        return request.getRequestURI().startsWith("/api");  
+        String requestType = request.getHeader("X-Requested-With");  
+        return requestType != null && requestType.equals("XMLHttpRequest");  
+    }  
 
 }

@@ -38,6 +38,7 @@ public class LoginController {
 		if (user != null) {
 			System.out.println(user.toString());
 			if (user.getPassword().equals(password)) {
+				session.setAttribute("user", user);
 				return QuickReturn.mapOk("success");
 			}
 		}
