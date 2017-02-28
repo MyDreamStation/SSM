@@ -9,6 +9,24 @@
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-fonts.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-skins.min.css">
 <link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style">
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/fonts/fonts.googleapis.com.css" />
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-rtl.min.css" />
+	
+	
+<!--[if lte IE 9]>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-part2.min.css" />
+	<![endif]-->
+
+<!--[if lte IE 9]>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-ie.min.css" />
+	<![endif]-->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+<!--[if lt IE 9]>
+    <script src="<%=request.getContextPath()%>/resources/forIE/html5shiv.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/forIE/respond.min.js"></script>
+    <![endif]-->
 <script src="<%=request.getContextPath()%>/resources/assets/js/ace-extra.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/jquery.min.js"></script>
 <script src="<%=request.getContextPath()%>/resources/assets/js/chosen.jquery.min.js"></script>

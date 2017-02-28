@@ -156,6 +156,8 @@
 
 		<!-- 自动部署的模式 -->
 		<property name="deploymentMode" value="single-resource" />
+		
+		<property name="dbIdentityUsed" ref="false" />  
 	</bean>
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
