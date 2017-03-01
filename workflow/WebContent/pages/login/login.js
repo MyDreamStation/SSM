@@ -36,7 +36,7 @@ function login() {
 			var result = data.success;
 			if (result == true) {
 				layer.alert("登录成功！");
-
+				window.location.href=basePath+"/pages/main/main.jsp";
 			}
 		},
 		failure : function(data) {

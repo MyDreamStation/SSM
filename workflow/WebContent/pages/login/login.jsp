@@ -16,8 +16,21 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="User login page" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <title>教学质量管理系统</title>
+<!--[if lte IE 9]>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-part2.min.css" />
+	<![endif]-->
+
+<!--[if lte IE 9]>
+	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-ie.min.css" />
+	<![endif]-->
+<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+
+<!--[if lt IE 9]>
+    <script src="<%=request.getContextPath()%>/resources/forIE/html5shiv.min.js"></script>
+    <script src="<%=request.getContextPath()%>/resources/forIE/respond.min.js"></script>
+    <![endif]-->
 
 </head>
 
