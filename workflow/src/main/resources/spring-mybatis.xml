@@ -38,7 +38,7 @@
 	<!-- 获取连接最大等待时间 -->
 	<!-- <property name="maxWait" value="${maxWait}"></property> -->
 	<!-- </bean> -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+	<bean id="dataSource" class="com.bjtu.zs.util.FixedBasicDataSource"
 		destroy-method="close"><!-- 在关闭容器时关闭改bean，并且关闭数据库的连接池 -->
 
 		<property name="driverClassName" value="${driver}"></property>
@@ -157,7 +157,8 @@
 		<!-- 自动部署的模式 -->
 		<property name="deploymentMode" value="single-resource" />
 		
-		<property name="dbIdentityUsed" value="false" />  
+		<!-- 使用视图定义用户 -->
+		<property name="dbIdentityUsed" value="false" />
 	</bean>
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
