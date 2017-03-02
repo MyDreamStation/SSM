@@ -5,6 +5,13 @@ import java.sql.SQLException;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
+/**
+ * @ClassName FixedBasicDataSource
+ * @Description 解决DBCP数据库连接内存泄漏，导致无法关闭tomcat的问题
+ * @author 曾双 631710518@qq.com
+ * @Date 2017年3月2日16:59:06
+ *
+ */
 public class FixedBasicDataSource extends BasicDataSource {
 
 	@Override
