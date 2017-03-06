@@ -31,7 +31,7 @@
 		<init-param>
 			<description>不需要验证的路径</description>
 			<param-name>excludedPages</param-name>
-			<param-value>/page/login/login.jsp,/login/login</param-value>
+			<param-value>/page/login/login.jsp,/login/login,/resources/*</param-value>
 		</init-param>
 	</filter>
 	<filter-mapping>
