@@ -7,7 +7,13 @@ import org.apache.log4j.Logger;
 import org.springframework.web.context.WebApplicationContext;
 
 import com.mysql.jdbc.AbandonedConnectionCleanupThread;
-
+/**
+ * @ClassName QuartzContextListener
+ * @Description 关闭无法关闭的守护线程，解决内存泄漏问题
+ * @author 曾双  631710518@qq.com
+ * @Date 2017年3月7日13:48:14
+ *
+ */
 public class QuartzContextListener implements ServletContextListener {
 
 	static Logger logger = Logger.getLogger(QuartzContextListener.class.getName());
