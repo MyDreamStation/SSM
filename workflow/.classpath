@@ -78,5 +78,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient/httpmime-4.5.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient/jna-4.1.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/httpclient/jna-platform-4.1.0.jar"/>
+	<classpathentry kind="lib" path="/common-server/lib/quartz/quartz-2.2.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
