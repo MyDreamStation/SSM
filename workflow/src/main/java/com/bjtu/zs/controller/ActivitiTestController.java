@@ -26,8 +26,10 @@ import org.activiti.engine.task.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bjtu.zs.service.ProcessService;
 import com.bjtu.zs.util.QuickReturn;
 
 @Controller
@@ -61,6 +63,12 @@ public class ActivitiTestController {
 
 	@Autowired
 	private RepositoryService repositoryService;
+	
+	
+	
+	@Autowired
+	private ProcessService processService;
+
 
 	@RequestMapping("/test")
 	@ResponseBody
@@ -149,5 +157,36 @@ public class ActivitiTestController {
 		}
 
 		return QuickReturn.mapOk("success");
+	}
+	
+	@RequestMapping(value = "/startProcess" , method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> startProcessByKey(String id){
+		try {
+			System.out.println("流程Id为:"+id);
+			String pId = processService.startProcessByKey(id);
+			return QuickReturn.mapOk(pId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return QuickReturn.mapError("服务器错误"+e.getMessage());
+		}
+	}
+	@RequestMapping(value = "/submitParam" , method=RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Object> submitParam(String id,String content){
+		Map<String,Object> param = new HashMap<>();
+		
+		param.put("content", content);
+		
+		try {
+			processService.submitParameter(param, id);
+			return QuickReturn.mapOk("提交成功");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return QuickReturn.mapError("服务器错误"+e.getMessage());
+		}
+		
+		
 	}
 }

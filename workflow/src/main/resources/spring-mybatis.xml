@@ -20,7 +20,8 @@
 	<!-- 引入配置文件 -->
 	<context:property-placeholder location="classpath:jdbc.properties"
 		system-properties-mode="FALLBACK" /><!-- 解决username和系统环境的冲突 -->
-
+	<context:property-placeholder location="classpath:mailConfiguration.properties"
+		system-properties-mode="FALLBACK" />
 	<!-- 配置数据源 -->
 	<!-- <bean id="dataSourceTest" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
 	<!-- destroy-method="close"> -->
@@ -148,7 +149,7 @@
 		<!-- 是否更新数据库实例 -->
 		<property name="databaseSchemaUpdate" value="true" />
 		<!-- 是否使用job executor -->
-		<property name="jobExecutorActivate" value="false" />
+		<property name="jobExecutorActivate" value="true" />
 
 		<!-- 流程模型的自动部署路径 -->
 		<property name="deploymentResources"
@@ -159,6 +160,16 @@
 		
 		<!-- 使用视图定义用户 -->
 		<property name="dbIdentityUsed" value="false" />
+		
+		
+		<!-- 邮件配置 -->
+		<property name="mailServerHost" value="smtp.qq.com"></property>
+		<property name="mailServerPort" value="587"></property>
+		<property name="mailServerUsername" value="631710518@qq.com"></property>
+		<property name="mailServerPassword" value="rpyiktvhpshbbbih"></property>
+		<property name="mailServerUseSSL" value="true"></property>
+		<!-- <property name="mailServerDefaultFrom" value="${mailServerDefaultFrom}"></property> 
+			<property name="mailServerUseTLS" value="${mailServerUseTLS}"></property> -->
 	</bean>
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">

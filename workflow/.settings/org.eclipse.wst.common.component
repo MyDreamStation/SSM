@@ -172,6 +172,12 @@
         <dependent-module archiveName="commons-lang3-3.3.2.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/common/commons-lang3-3.3.2.jar">
             <dependency-type>uses</dependency-type>
         </dependent-module>
+        <dependent-module archiveName="commons-email-1.3.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/mail/commons-email-1.3.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="javax.mail.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib/workflow/WebContent/WEB-INF/lib/mail/javax.mail.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="workflow"/>
         <property name="java-output-path" value="/workflow/build/classes"/>
     </wb-module>
