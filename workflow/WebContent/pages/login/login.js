@@ -33,10 +33,11 @@ function login() {
 		},
 		dataType : 'json',
 		success : function(data) {
-			var result = data.success;
-			if (result == true) {
-				layer.alert("登录成功！");
-				window.location.href=basePath+"/pages/main/main.jsp";
+			var status = data.status;
+			if (status == '0' || status == '-1') {
+				layer.alert(data.message);
+			}else if (status == '1'){
+				window.location.href="pages/main/main.jsp";
 			}
 		},
 		failure : function(data) {

@@ -84,7 +84,9 @@ public class LoginFilter implements Filter {
 //				else if (RegUtils.isMatch("^/$", servletPath)) {
 //					response.sendRedirect(contextPath + "/pages/login/login.jsp");
 //				}
-			} else {
+			} else if(null != user && "/pages/login/login.jsp".equals(servletPath)){
+				response.sendRedirect(contextPath+"/pages/main/main.jsp");
+			}else{
 				chain.doFilter(request, response);
 			}
 

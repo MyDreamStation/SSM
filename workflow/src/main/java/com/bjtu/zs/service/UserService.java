@@ -10,5 +10,5 @@ public interface UserService {
 	 * @param loginId
 	 * @return
 	 */
-	User getUserByLoginId(String loginId);
+	User getUserByLoginId(String loginId) throws Exception;
 }

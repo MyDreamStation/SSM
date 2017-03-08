@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
 	private UserDao userDao;
 
 	@Override
-	public User getUserByLoginId(String loginId) {
+	public User getUserByLoginId(String loginId) throws Exception{
 		User user = null;
 		user = userDao.getUserByLoginId(loginId);
 		return user;

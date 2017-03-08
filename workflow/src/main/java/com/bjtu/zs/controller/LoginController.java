@@ -1,5 +1,6 @@
 package com.bjtu.zs.controller;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -30,18 +31,35 @@ public class LoginController {
 	 */
 	@RequestMapping("/login")
 	@ResponseBody
-	public Map<String, Object> login(HttpSession session, String loginId, String password) {
+	public Map<String, String> login(HttpSession session, String loginId, String password) {
+		Map<String,String> loginStatus = new HashMap<>();
+		
 		User user = null;
-		user = userService.getUserByLoginId(loginId);
+		try {
+			user = userService.getUserByLoginId(loginId);
+		} catch (Exception e) {
+			e.printStackTrace();
+			loginStatus.put("status", "-1");
+			loginStatus.put("message", "服务器错误:"+e.getMessage());
+			return loginStatus;
+			
+		}
 		
 		
 		if (user != null) {
-			System.out.println(user.toString());
 			if (user.getPassword().equals(password)) {
 				session.setAttribute("user", user);
-				return QuickReturn.mapOk("success");
+				loginStatus.put("status", "1");
+				loginStatus.put("message", "登录成功!");
+			}else{
+				loginStatus.put("status", "0");
+				loginStatus.put("message", "密码错误!");
 			}
+		}else{
+			loginStatus.put("status", "0");
+			loginStatus.put("message", "用户不存在!");
 		}
-		return QuickReturn.mapError("failure");
+		
+		return loginStatus;
 	}
 }
