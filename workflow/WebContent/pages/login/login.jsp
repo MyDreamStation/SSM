@@ -335,4 +335,5 @@
 	</script>
 </body>
 <script type="text/javascript" src="pages/login/login.js"></script>
+<script type="text/javascript" src="pages/login/md5.js"></script>
 </html>
