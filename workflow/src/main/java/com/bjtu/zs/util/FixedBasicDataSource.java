@@ -1,7 +1,9 @@
 package com.bjtu.zs.util;
 
+import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Enumeration;
 
 import org.apache.commons.dbcp.BasicDataSource;
 
@@ -28,7 +30,11 @@ public class FixedBasicDataSource extends BasicDataSource {
 
 	@Override
 	public synchronized void close() throws SQLException {
-		DriverManager.deregisterDriver(DriverManager.getDriver(url));
+//		DriverManager.deregisterDriver(DriverManager.getDriver(url));
+		Enumeration<Driver> drivers = DriverManager.getDrivers();
+		while(drivers.hasMoreElements()){
+			DriverManager.deregisterDriver(drivers.nextElement());
+		}
 		super.close();
 	}
 }
