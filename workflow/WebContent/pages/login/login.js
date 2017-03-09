@@ -11,7 +11,7 @@ function login() {
 	$('#error_2').html("");
 
 	var loginId = $('#loginId').val();// 登录用户名
-	var password = $('#password').val();// 登录密码
+	var password = $.md5($('#password').val());// 登录密码
 
 	var flag;// 校验标志
 	// 校验

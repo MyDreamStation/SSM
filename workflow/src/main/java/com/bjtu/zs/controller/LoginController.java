@@ -26,7 +26,7 @@ public class LoginController {
 	 * 
 	 * @param session
 	 * @param loginId 账号（可以是邮箱地址）
-	 * @param password 密码
+	 * @param password 密码(密文密码)
 	 * @return
 	 */
 	@RequestMapping("/login")
