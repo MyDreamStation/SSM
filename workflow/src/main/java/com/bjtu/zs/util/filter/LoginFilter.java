@@ -43,9 +43,10 @@ public class LoginFilter implements Filter {
 
 		boolean isExcludedPage = false;
 
-		// 请求路径
-		String path = request.getRequestURI();
+//		String path = request.getRequestURI();
+		//请求的项目访问地址
 		String contextPath = request.getContextPath();
+		//请求的资源路径
 		String servletPath = request.getServletPath();
 
 		Object user = session.getAttribute("user");

@@ -38,7 +38,6 @@ public class QuartzContextListener implements ServletContextListener {
 
 	@Override
 	public void contextInitialized(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
 
 	}
 

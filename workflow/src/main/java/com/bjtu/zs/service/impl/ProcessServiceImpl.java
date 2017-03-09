@@ -21,53 +21,50 @@ import com.bjtu.zs.service.ProcessService;
 
 @Service
 public class ProcessServiceImpl implements ProcessService {
-	
+
 	@Autowired
 	private RuntimeService runtimeService;
-	
-	@Autowired 
+
+	@Autowired
 	private FormService formService;
-	
+
 	@Autowired
 	private TaskService taskService;
-	
+
 	@Autowired
 	private HistoryService historyService;
-	
 
 	@Override
-	public String startProcessByKey(String key) throws Exception{
+	public String startProcessByKey(String key) throws Exception {
 		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key);
-		
+
 		String id = processInstance.getId();
-		
+
 		return id;
 	}
 
 	@Override
-	public void getTodo() throws Exception{
-		// TODO Auto-generated method stub
-		
+	public void getTodo() throws Exception {
+		//TODO 获取待办事务
 	}
 
 	@Override
-	public void submitParameter(Map param, String id) throws Exception {
+	public void submitParameter(Map<String,Object> param, String id) throws Exception {
 		ProcessInstance processInstance = getProcessInstanceById(id);
-		
-		if(null != processInstance && !processInstance.isEnded()){
+
+		if (null != processInstance && !processInstance.isEnded()) {
 			List<Task> tasks = taskService.createTaskQuery().list();
-			
+
 			for (Task task : tasks) {
-				
+
 				// 保存要提交的参数
 				Map<String, Object> variables = new HashMap<>();
-				
+
 				String taskId = task.getId();
-				
-				
+
 				TaskFormData taskFormData = formService.getTaskFormData(taskId);
 				List<FormProperty> formProperties = taskFormData.getFormProperties();
-				
+
 				for (FormProperty formProperty : formProperties) {
 					String formId = formProperty.getId();
 					String value = formProperty.getValue();
@@ -81,7 +78,7 @@ public class ProcessServiceImpl implements ProcessService {
 						variables.put(formId, temp);
 					}
 				}
-				
+
 				taskService.complete(taskId, variables);
 			}
 		}
@@ -89,9 +86,18 @@ public class ProcessServiceImpl implements ProcessService {
 
 	@Override
 	public ProcessInstance getProcessInstanceById(String id) throws Exception {
-		ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(id).singleResult();
+		ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(id)
+				.singleResult();
 		return processInstance;
 	}
 
+	@Override
+	public String startProcessByKeyWithVariables(String key, Map<String, Object> variables) throws Exception {
+		ProcessInstance processInstance = runtimeService.startProcessInstanceByKey(key, variables);
+
+		String id = processInstance.getId();
+
+		return id;
+	}
 
 }

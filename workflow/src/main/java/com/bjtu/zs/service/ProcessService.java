@@ -16,10 +16,23 @@ public interface ProcessService {
 	 * 通过流程定义的id启动流程
 	 * 
 	 * @param key
-	 *            程定义中的id
+	 *            流程定义中的id
+	 * @return
 	 * @throws Exception
 	 */
 	public String startProcessByKey(String key) throws Exception;
+
+	/**
+	 * 通过流程定义的id和流程变量启动流程
+	 * 
+	 * @param key
+	 *            流程定义中的id
+	 * @param variables
+	 *            流程变量
+	 * @return
+	 * @throws Exception
+	 */
+	public String startProcessByKeyWithVariables(String key, Map<String, Object> variables) throws Exception;
 
 	/**
 	 * 
@@ -29,13 +42,32 @@ public interface ProcessService {
 	/**
 	 * 提交任务中的参数
 	 * 
-	 * @param param 参数
-	 * @param id 
+	 * @param param
+	 *            参数
+	 * @param id
 	 * @throws Exception
 	 */
-	public void submitParameter(Map param, String id) throws Exception;
+	public void submitParameter(Map<String,Object> param, String id) throws Exception;
+
 	
-	
+	/**
+	 * 根据流程实例的id获取流程实例
+	 * 
+	 * @param id
+	 * @return
+	 * @throws Exception
+	 */
 	public ProcessInstance getProcessInstanceById(String id) throws Exception;
+	
+	
+	/**
+	 * 已办
+	 */
+	
+	
+	
+	/**
+	 * 
+	 */
 
 }

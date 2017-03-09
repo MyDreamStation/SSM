@@ -70,7 +70,7 @@ public class ActivitiTestController {
 	@Autowired
 	private ProcessService processService;
 	
-	//todo  存在线程安全问题,最好使用new来解决，将邮件发件和收件人信息保存在runtimeService中的variable中
+	//TODO  存在线程安全问题,最好使用new来解决，将邮件发件和收件人信息保存在runtimeService中的variable中
 	//或者使用ctx.getBean，并在配置文件将MailEntity的bean定义的scope设置为prototype
 	@Autowired
 	private MailEntity mail;
