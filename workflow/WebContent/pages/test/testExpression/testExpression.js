@@ -31,7 +31,8 @@ $(function(){
 			url : 'activiti/submitParam',
 			data : {
 				id:pid,
-				content:content
+				content:content,
+				to:"13281075@bjtu.edu.cn"
 				
 			},
 			dataType : 'json',

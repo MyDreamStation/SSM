@@ -157,11 +157,11 @@
 
 		<!-- 自动部署的模式 -->
 		<property name="deploymentMode" value="single-resource" />
-		
+
 		<!-- 使用视图定义用户 -->
 		<property name="dbIdentityUsed" value="false" />
-		
-		
+
+
 		<!-- 邮件配置 -->
 		<property name="mailServerHost" value="smtp.qq.com"></property>
 		<property name="mailServerPort" value="587"></property>
@@ -170,6 +170,13 @@
 		<property name="mailServerUseSSL" value="true"></property>
 		<!-- <property name="mailServerDefaultFrom" value="${mailServerDefaultFrom}"></property> 
 			<property name="mailServerUseTLS" value="${mailServerUseTLS}"></property> -->
+
+
+		<property name="beans">
+			<map>
+				<entry key="mail" value-ref="mail" />
+			</map>
+		</property>
 	</bean>
 
 	<bean id="processEngine" class="org.activiti.spring.ProcessEngineFactoryBean">
@@ -178,23 +185,28 @@
 
 
 	<!-- 通过流程引擎获取系统所需的相关服务 -->
-	
-	<!--  -->
+
+	<!-- -->
 	<bean id="repositoryService" factory-bean="processEngine"
 		factory-method="getRepositoryService" />
-	<!--  -->
+	<!-- -->
 	<bean id="runtimeService" factory-bean="processEngine"
 		factory-method="getRuntimeService" />
-	<!--  -->
+	<!-- -->
 	<bean id="taskService" factory-bean="processEngine"
 		factory-method="getTaskService" />
-	<!--  -->
+	<!-- -->
 	<bean id="formService" factory-bean="processEngine"
 		factory-method="getFormService" />
-	<!--  -->
+	<!-- -->
 	<bean id="historyService" factory-bean="processEngine"
 		factory-method="getHistoryService" />
-	<!--  -->
+	<!-- -->
 	<bean id="managementService" factory-bean="processEngine"
 		factory-method="getManagementService" />
+		
+		
+	<bean id="mail" class="com.bjtu.zs.util.MailEntity" >
+		<property name="from" value="631710518@qq.com"></property>
+	</bean>
 </beans>

@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bjtu.zs.service.ProcessService;
+import com.bjtu.zs.util.MailEntity;
 import com.bjtu.zs.util.QuickReturn;
 
 @Controller
@@ -68,6 +69,9 @@ public class ActivitiTestController {
 	
 	@Autowired
 	private ProcessService processService;
+	
+	@Autowired
+	private MailEntity mail;
 
 
 	@RequestMapping("/test")
@@ -173,16 +177,15 @@ public class ActivitiTestController {
 	}
 	@RequestMapping(value = "/submitParam" , method=RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> submitParam(String id,String content){
+	public Map<String,Object> submitParam(String id,String content,String to){
 		Map<String,Object> param = new HashMap<>();
 		
 		param.put("content", content);
-		
+		mail.setTo(to);
 		try {
 			processService.submitParameter(param, id);
 			return QuickReturn.mapOk("提交成功");
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return QuickReturn.mapError("服务器错误"+e.getMessage());
 		}
