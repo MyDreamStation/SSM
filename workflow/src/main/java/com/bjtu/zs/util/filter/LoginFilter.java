@@ -43,7 +43,6 @@ public class LoginFilter implements Filter {
 
 		boolean isExcludedPage = false;
 
-//		String path = request.getRequestURI();
 		//请求的项目访问地址
 		String contextPath = request.getContextPath();
 		//请求的资源路径
@@ -55,7 +54,7 @@ public class LoginFilter implements Filter {
 			// 排除不需要拦截的页面
 			for (String page : excludedPagesArray) {
 				// TODO 没看懂
-				// 如果当前请求的页面是登录页面
+				// 如果当前请求的页面是登录页面，需要先判断是否登录，之后再决定是否跳转到登录界面
 				if (RegUtils.isMatch("(?i)^.*login\\.jsp$", servletPath)) {
 //					isExcludedPage = true;
 					continue;
@@ -74,23 +73,38 @@ public class LoginFilter implements Filter {
 		if (isExcludedPage) {// 不需要拦截的页面直接访问
 			chain.doFilter(request, response);
 			return;
-		} else {// 需要拦截的页面则判断是否登录
-			if (null == user && !"/pages/login/login.jsp".equals(servletPath)) {
+		} else {
+			//如果访问的资源不是登录界面，并且用户未登录则跳转到登录界面
+/*			if (null == user && !"/pages/login/login.jsp".equals(servletPath)) {
 				response.sendRedirect(contextPath+"/pages/login/login.jsp");
-//				if (RegUtils.isMatch("(?i)^.*\\.jsp$", servletPath)) {
-//					response.sendRedirect(contextPath + "/pages/login/login.jsp");
-//				} else if (RegUtils.isMatch("(?i)^.*\\.(js|css|png|jpg|icon|woff)$", servletPath)) {
-//					chain.doFilter(req, rep);
-//				} 
-//				else if (RegUtils.isMatch("^/$", servletPath)) {
-//					response.sendRedirect(contextPath + "/pages/login/login.jsp");
-//				}
-			} else if(null != user && "/pages/login/login.jsp".equals(servletPath)){
+			} else if(null != user && "/pages/login/login.jsp".equals(servletPath)){//如果当前用户访问的资源是登录界面，并且用户已登录，则跳转到首页
 				response.sendRedirect(contextPath+"/pages/main/main.jsp");
-			}else{
+			}else{//1.用户访问的是登录界面，并且未登录，则不过滤；2用户访问的界面不是登录界面；并且已登录，则不过滤
 				chain.doFilter(request, response);
 			}
-
+*/
+			if(null == user){
+				if (RegUtils.isMatch("(?i)^.*\\.jsp$", servletPath)&& !"/pages/login/login.jsp".equals(servletPath)) {
+					response.sendRedirect(contextPath + "/pages/login/login.jsp");
+				} else if (RegUtils.isMatch("(?i)^.*\\.(js|css|png|jpg|icon|woff)$", servletPath)) {
+					chain.doFilter(req, rep);
+				} else if (RegUtils.isMatch("^/$", servletPath)) {
+					response.sendRedirect(contextPath + "/pages/login/login.jsp");
+				} else if("/pages/login/login.jsp".equals(servletPath)){
+					chain.doFilter(req, rep);
+				}
+			}else{
+				if (RegUtils.isMatch("(?i)^.*login\\.jsp$", servletPath)) {
+					response.sendRedirect(contextPath + "/pages/main/main.jsp");
+				} 
+				else if (RegUtils.isMatch("^/$", servletPath)) {
+					response.sendRedirect(contextPath + "/pages/main/main.jsp");
+				} 
+				else{
+					chain.doFilter(req, rep);
+				}
+			}
+			
 
 		}
 	}
