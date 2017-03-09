@@ -205,8 +205,8 @@
 	<bean id="managementService" factory-bean="processEngine"
 		factory-method="getManagementService" />
 		
-		
-	<bean id="mail" class="com.bjtu.zs.util.MailEntity" >
+	
+	<bean id="mail" class="com.bjtu.zs.util.MailEntity">
 		<property name="from" value="631710518@qq.com"></property>
 	</bean>
 </beans>

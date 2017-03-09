@@ -27,6 +27,7 @@ public interface ProcessService {
 	public void getTodo() throws Exception;
 
 	/**
+	 * 提交任务中的参数
 	 * 
 	 * @param param 参数
 	 * @param id 
