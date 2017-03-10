@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bjtu.zs.pojo.User;
@@ -61,5 +62,17 @@ public class LoginController {
 		}
 		
 		return loginStatus;
+	}
+	//TODO 会出现无法响应回前台js的问题
+	/**
+	 * 用户注销控制器
+	 * 
+	 * @param session
+	 */
+	@RequestMapping("/logout")
+	@ResponseBody
+	public Map<String,Object> logout(HttpSession session){
+		session.removeAttribute("user");
+		return QuickReturn.mapOk("注销成功！");
 	}
 }
