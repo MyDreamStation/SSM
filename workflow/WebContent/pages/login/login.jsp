@@ -16,6 +16,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="description" content="User login page" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="format-detection" content="telephone=no">
+
 <title>教学质量管理系统</title>
 <!--[if lte IE 9]>
 	<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/assets/css/ace-part2.min.css" />
