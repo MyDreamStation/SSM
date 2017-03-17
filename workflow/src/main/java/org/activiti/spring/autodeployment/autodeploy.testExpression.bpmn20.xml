@@ -1,120 +1,106 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-	xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
-	xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI"
-	typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath"
-	targetNamespace="http://www.activiti.org/test">
-	<process id="TestExpression" name="TestExpression"
-		isExecutable="true">
-		<startEvent id="startevent" name="Start"></startEvent>
-		<userTask id="usertask1" name="User Task">
-			<extensionElements>
-				<activiti:formProperty id="content" name="content"
-					type="string" required="true"></activiti:formProperty>
-			</extensionElements>
-		</userTask>
-		<sequenceFlow id="flow1" sourceRef="startevent"
-			targetRef="usertask1"></sequenceFlow>
-		<serviceTask id="mailtask1" name="Mail Task"
-			activiti:type="mail">
-			<extensionElements>
-				<activiti:field name="to">
-					<activiti:expression><![CDATA[${mail.getTo()}]]></activiti:expression>
-				</activiti:field>
-				<activiti:field name="from">
-					<activiti:expression><![CDATA[${mail.getFrom()}]]></activiti:expression>
-				</activiti:field>
-				<activiti:field name="charset">
-					<activiti:string><![CDATA[utf-8]]></activiti:string>
-				</activiti:field>
-				<activiti:field name="subject">
-					<activiti:string><![CDATA[内容如下]]></activiti:string>
-				</activiti:field>
-				<activiti:field name="html">
-					<activiti:expression><![CDATA[邮件内容如下：${content}]]></activiti:expression>
-				</activiti:field>
-			</extensionElements>
-		</serviceTask>
-		<sequenceFlow id="flow2" sourceRef="usertask1" targetRef="mailtask1"></sequenceFlow>
-		<endEvent id="endevent1" name="End"></endEvent>
-		<sequenceFlow id="flow3" sourceRef="mailtask1" targetRef="endevent1"></sequenceFlow>
-		<boundaryEvent id="boundarytimer1" name="Timer"
-			attachedToRef="usertask1" cancelActivity="true">
-			<timerEventDefinition>
-				<timeDuration>PT5M</timeDuration>
-			</timerEventDefinition>
-		</boundaryEvent>
-		<serviceTask id="mailtask2" name="Mail Task"
-			activiti:type="mail">
-			<extensionElements>
-				<activiti:field name="to">
-					<activiti:expression><![CDATA[${mail.getTo()}]]></activiti:expression>
-				</activiti:field>
-				<activiti:field name="from">
-					<activiti:expression><![CDATA[${mail.getFrom()}]]></activiti:expression>
-				</activiti:field>
-				<activiti:field name="charset">
-					<activiti:string><![CDATA[utf-8]]></activiti:string>
-				</activiti:field>
-				<activiti:field name="subject">
-					<activiti:string><![CDATA[您超时了哦]]></activiti:string>
-				</activiti:field>
-				<activiti:field name="html">
-					<activiti:string><![CDATA[超时]]></activiti:string>
-				</activiti:field>
-			</extensionElements>
-		</serviceTask>
-		<sequenceFlow id="flow4" sourceRef="boundarytimer1"
-			targetRef="mailtask2"></sequenceFlow>
-		<endEvent id="endevent3" name="End"></endEvent>
-		<sequenceFlow id="flow6" sourceRef="mailtask2" targetRef="endevent3"></sequenceFlow>
-	</process>
-	<bpmndi:BPMNDiagram id="BPMNDiagram_TestExpression">
-		<bpmndi:BPMNPlane bpmnElement="TestExpression"
-			id="BPMNPlane_TestExpression">
-			<bpmndi:BPMNShape bpmnElement="startevent" id="BPMNShape_startevent">
-				<omgdc:Bounds height="35.0" width="35.0" x="80.0" y="210.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
-				<omgdc:Bounds height="55.0" width="105.0" x="160.0" y="200.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="boundarytimer1"
-				id="BPMNShape_boundarytimer1">
-				<omgdc:Bounds height="30.0" width="30.0" x="200.0" y="240.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="mailtask1" id="BPMNShape_mailtask1">
-				<omgdc:Bounds height="55.0" width="105.0" x="310.0" y="200.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
-				<omgdc:Bounds height="35.0" width="35.0" x="460.0" y="210.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="mailtask2" id="BPMNShape_mailtask2">
-				<omgdc:Bounds height="55.0" width="105.0" x="160.0" y="326.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
-				<omgdc:Bounds height="35.0" width="35.0" x="360.0" y="336.0"></omgdc:Bounds>
-			</bpmndi:BPMNShape>
-			<bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-				<omgdi:waypoint x="115.0" y="227.0"></omgdi:waypoint>
-				<omgdi:waypoint x="160.0" y="227.0"></omgdi:waypoint>
-			</bpmndi:BPMNEdge>
-			<bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
-				<omgdi:waypoint x="265.0" y="227.0"></omgdi:waypoint>
-				<omgdi:waypoint x="310.0" y="227.0"></omgdi:waypoint>
-			</bpmndi:BPMNEdge>
-			<bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
-				<omgdi:waypoint x="415.0" y="227.0"></omgdi:waypoint>
-				<omgdi:waypoint x="460.0" y="227.0"></omgdi:waypoint>
-			</bpmndi:BPMNEdge>
-			<bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
-				<omgdi:waypoint x="215.0" y="270.0"></omgdi:waypoint>
-				<omgdi:waypoint x="212.0" y="326.0"></omgdi:waypoint>
-			</bpmndi:BPMNEdge>
-			<bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
-				<omgdi:waypoint x="265.0" y="353.0"></omgdi:waypoint>
-				<omgdi:waypoint x="360.0" y="353.0"></omgdi:waypoint>
-			</bpmndi:BPMNEdge>
-		</bpmndi:BPMNPlane>
-	</bpmndi:BPMNDiagram>
+<definitions xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:activiti="http://activiti.org/bpmn" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:omgdc="http://www.omg.org/spec/DD/20100524/DC" xmlns:omgdi="http://www.omg.org/spec/DD/20100524/DI" typeLanguage="http://www.w3.org/2001/XMLSchema" expressionLanguage="http://www.w3.org/1999/XPath" targetNamespace="http://www.activiti.org/test">
+  <process id="TestExpression" name="TestExpression" isExecutable="true">
+    <startEvent id="startevent" name="Start"></startEvent>
+    <userTask id="usertask1" name="User Task" activiti:assignee="admin">
+      <extensionElements>
+        <activiti:formProperty id="content" name="content" type="string" required="true"></activiti:formProperty>
+      </extensionElements>
+    </userTask>
+    <sequenceFlow id="flow1" sourceRef="startevent" targetRef="usertask1"></sequenceFlow>
+    <serviceTask id="mailtask1" name="Mail Task" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${mail.getTo()}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:expression><![CDATA[${mail.getFrom()}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="charset">
+          <activiti:string><![CDATA[utf-8]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[内容如下]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:expression><![CDATA[邮件内容如下：${content}]]></activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow2" sourceRef="usertask1" targetRef="mailtask1"></sequenceFlow>
+    <endEvent id="endevent1" name="End"></endEvent>
+    <sequenceFlow id="flow3" sourceRef="mailtask1" targetRef="endevent1"></sequenceFlow>
+    <boundaryEvent id="boundarytimer1" name="Timer" attachedToRef="usertask1" cancelActivity="true">
+      <timerEventDefinition>
+        <timeDuration>PT10M</timeDuration>
+      </timerEventDefinition>
+    </boundaryEvent>
+    <serviceTask id="mailtask2" name="Mail Task" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="to">
+          <activiti:expression><![CDATA[${mail.getTo()}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="from">
+          <activiti:expression><![CDATA[${mail.getFrom()}]]></activiti:expression>
+        </activiti:field>
+        <activiti:field name="charset">
+          <activiti:string><![CDATA[utf-8]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="subject">
+          <activiti:string><![CDATA[您超时了哦]]></activiti:string>
+        </activiti:field>
+        <activiti:field name="html">
+          <activiti:string><![CDATA[超时]]></activiti:string>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="boundarytimer1" targetRef="mailtask2"></sequenceFlow>
+    <endEvent id="endevent3" name="End"></endEvent>
+    <sequenceFlow id="flow6" sourceRef="mailtask2" targetRef="endevent3"></sequenceFlow>
+  </process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_TestExpression">
+    <bpmndi:BPMNPlane bpmnElement="TestExpression" id="BPMNPlane_TestExpression">
+      <bpmndi:BPMNShape bpmnElement="startevent" id="BPMNShape_startevent">
+        <omgdc:Bounds height="35.0" width="35.0" x="80.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="usertask1" id="BPMNShape_usertask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="160.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="boundarytimer1" id="BPMNShape_boundarytimer1">
+        <omgdc:Bounds height="30.0" width="30.0" x="200.0" y="240.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mailtask1" id="BPMNShape_mailtask1">
+        <omgdc:Bounds height="55.0" width="105.0" x="310.0" y="200.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent1" id="BPMNShape_endevent1">
+        <omgdc:Bounds height="35.0" width="35.0" x="460.0" y="210.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="mailtask2" id="BPMNShape_mailtask2">
+        <omgdc:Bounds height="55.0" width="105.0" x="160.0" y="326.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="endevent3" id="BPMNShape_endevent3">
+        <omgdc:Bounds height="35.0" width="35.0" x="360.0" y="336.0"></omgdc:Bounds>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
+        <omgdi:waypoint x="115.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="160.0" y="227.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
+        <omgdi:waypoint x="265.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="310.0" y="227.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
+        <omgdi:waypoint x="415.0" y="227.0"></omgdi:waypoint>
+        <omgdi:waypoint x="460.0" y="227.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow4" id="BPMNEdge_flow4">
+        <omgdi:waypoint x="215.0" y="270.0"></omgdi:waypoint>
+        <omgdi:waypoint x="212.0" y="326.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="flow6" id="BPMNEdge_flow6">
+        <omgdi:waypoint x="265.0" y="353.0"></omgdi:waypoint>
+        <omgdi:waypoint x="360.0" y="353.0"></omgdi:waypoint>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
 </definitions>
