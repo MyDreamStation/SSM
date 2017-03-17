@@ -1,8 +1,12 @@
 package com.bjtu.zs.service;
 
+import java.util.List;
 import java.util.Map;
 
 import org.activiti.engine.runtime.ProcessInstance;
+
+import com.bjtu.zs.vo.TaskQueryVo;
+import com.bjtu.zs.vo.Todo;
 
 /**
  * @ClassName ProcessService
@@ -34,10 +38,14 @@ public interface ProcessService {
 	 */
 	public String startProcessByKeyWithVariables(String key, Map<String, Object> variables) throws Exception;
 
+
 	/**
-	 * 待办
+	 * 待办事项列表
+	 * @param userName 用户名
+	 * @return
+	 * @throws Exception
 	 */
-	public void getTodo() throws Exception;
+	public List<Todo> getTodo(String userName,TaskQueryVo taskQueryVo) throws Exception;
 
 	/**
 	 * 提交任务中的参数

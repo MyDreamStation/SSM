@@ -3,10 +3,13 @@ package com.bjtu.zs.controller;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.activiti.engine.FormService;
 import org.activiti.engine.HistoryService;
@@ -29,9 +32,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bjtu.zs.pojo.User;
 import com.bjtu.zs.service.ProcessService;
 import com.bjtu.zs.util.MailEntity;
 import com.bjtu.zs.util.QuickReturn;
+import com.bjtu.zs.vo.TaskQueryVo;
+import com.bjtu.zs.vo.Todo;
 
 @Controller
 @RequestMapping("/activiti")
@@ -191,5 +197,30 @@ public class ActivitiTestController {
 			e.printStackTrace();
 			return QuickReturn.mapError("服务器错误"+e.getMessage());
 		}
+	}
+	@RequestMapping(value = "/getTodo",method=RequestMethod.GET)
+	public @ResponseBody Map<String,Object> myTodo(HttpServletRequest request,TaskQueryVo taskQueryVo){
+		User user = (User) request.getSession().getAttribute("user");
+		
+		if(user == null){
+			return QuickReturn.mapError("用户未登录！");
+		}
+		//获取用户名
+		String loginId = user.getLoginId();
+		
+		//获取待办事项
+		List<Todo> list = new ArrayList<Todo>();
+		
+		try {
+			list=processService.getTodo(loginId,taskQueryVo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return QuickReturn.mapError("服务器错误："+e.getMessage());
+		}
+		if(list.isEmpty()){
+			return QuickReturn.mapOk("");
+		}
+		return QuickReturn.mapOk(list);
+		
 	}
 }
