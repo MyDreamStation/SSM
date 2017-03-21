@@ -37,7 +37,7 @@ public class QuickReturn {
 	public static Map<String, Object> mapOk(String str) {
 		Map<String, Object> map = new HashMap<>();
 
-		map.put("size", 1);
+		map.put("size", 0);
 		map.put("data", str);
 		map.put("success", true);
 
@@ -69,7 +69,7 @@ public class QuickReturn {
 	public static Map<String, Object> mapError(String str) {
 		Map<String, Object> map = new HashMap<>();
 
-		map.put("size", 1);
+		map.put("size", 0);
 		map.put("data", str);
 		map.put("success", false);
 
