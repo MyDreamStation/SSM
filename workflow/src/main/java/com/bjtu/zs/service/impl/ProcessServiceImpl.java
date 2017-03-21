@@ -51,34 +51,34 @@ public class ProcessServiceImpl implements ProcessService {
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public List<Todo> getTodo(String userName,TaskQueryVo taskQueryVo) throws Exception {
+	public List<Todo> getTodo(String userName, TaskQueryVo taskQueryVo) throws Exception {
 		// TODO 获取待办事务
 		// 获取当前时间
 		Date now = new Date();
 		// 根据当前用户查询过期时间为当前时间之后的任务
 		TaskQuery taskQuery = taskService.createTaskQuery().orderByTaskCreateTime().taskAssignee(userName).asc();
-		
-		if (taskQueryVo != null) {  
-            String candidateUser = taskQueryVo.getCandidateUser();  
-            if (StringUtils.isNotBlank(candidateUser))  {
-            	taskQuery = taskQuery.taskCandidateUser(candidateUser);  
-            }
-            String taskName = taskQueryVo.getTaskName();
-            if(StringUtils.isNotBlank(taskName)){
-            	taskQuery = taskQuery.taskNameLike(taskName);
-            }
-            Date startDate = taskQueryVo.getStartDate();
-            if(StringUtils.isNotBlank(startDate.toString())){
-            	taskQuery = taskQuery.dueAfter(startDate);
-            }
-            Date endDate = taskQueryVo.getEndDate();
-            if(StringUtils.isNotBlank(endDate.toString())){
-            	taskQuery = taskQuery.dueBefore(endDate);
-            }
-        }
-		List<Task> tasks=taskQuery.listPage(taskQueryVo.getStart(), taskQueryVo.getLimit());
+
+		if (taskQueryVo != null) {
+			String candidateUser = taskQueryVo.getCandidateUser();
+			if (StringUtils.isNotBlank(candidateUser)) {
+				taskQuery = taskQuery.taskCandidateUser(candidateUser);
+			}
+			String taskName = taskQueryVo.getTaskName();
+			if (StringUtils.isNotBlank(taskName)) {
+				taskQuery = taskQuery.taskNameLike(taskName);
+			}
+			Date startDate = taskQueryVo.getStartDate();
+			if (startDate != null) {
+				taskQuery = taskQuery.dueAfter(startDate);
+			}
+			Date endDate = taskQueryVo.getEndDate();
+			if (endDate != null) {
+				taskQuery = taskQuery.dueBefore(endDate);
+			}
+		}
+		List<Task> tasks = taskQuery.listPage(taskQueryVo.getStart(), taskQueryVo.getLimit());
 		List<Todo> myTodoList = new ArrayList<Todo>();
-		if(tasks.isEmpty()){
+		if (tasks.isEmpty()) {
 			return myTodoList;
 		}
 		Todo myTodo = new Todo();
@@ -90,7 +90,7 @@ public class ProcessServiceImpl implements ProcessService {
 			myTodo.setCreateTime(task.getCreateTime());
 			myTodo.setDueDate(task.getDueDate());
 			myTodo.setDescription(task.getDescription());
-			
+
 			myTodoList.add(myTodo);
 		}
 
