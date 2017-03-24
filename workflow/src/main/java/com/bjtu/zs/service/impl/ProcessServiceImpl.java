@@ -12,6 +12,8 @@ import org.activiti.engine.RuntimeService;
 import org.activiti.engine.TaskService;
 import org.activiti.engine.form.FormProperty;
 import org.activiti.engine.form.TaskFormData;
+import org.activiti.engine.history.HistoricProcessInstance;
+import org.activiti.engine.history.HistoricProcessInstanceQuery;
 import org.activiti.engine.impl.form.LongFormType;
 import org.activiti.engine.impl.form.StringFormType;
 import org.activiti.engine.runtime.ProcessInstance;
@@ -21,9 +23,12 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bjtu.zs.pojo.Hasdo;
+import com.bjtu.zs.pojo.ProcInstance;
+import com.bjtu.zs.pojo.Todo;
 import com.bjtu.zs.service.ProcessService;
+import com.bjtu.zs.vo.ProcessInstanceQueryVo;
 import com.bjtu.zs.vo.TaskQueryVo;
-import com.bjtu.zs.vo.Todo;
 
 @Service
 public class ProcessServiceImpl implements ProcessService {
@@ -52,10 +57,7 @@ public class ProcessServiceImpl implements ProcessService {
 	@SuppressWarnings("deprecation")
 	@Override
 	public List<Todo> getTodo(String userName, TaskQueryVo taskQueryVo) throws Exception {
-		// TODO 获取待办事务
-		// 获取当前时间
-		Date now = new Date();
-		// 根据当前用户查询过期时间为当前时间之后的任务
+
 		TaskQuery taskQuery = taskService.createTaskQuery().orderByTaskCreateTime().taskAssignee(userName).asc();
 
 		if (taskQueryVo != null) {
@@ -147,6 +149,52 @@ public class ProcessServiceImpl implements ProcessService {
 		String id = processInstance.getId();
 
 		return id;
+	}
+
+	@Override
+	public List<ProcInstance> getProcessInstanceByParam(ProcessInstanceQueryVo processInstanceQueryVo)throws Exception {
+		
+		HistoricProcessInstanceQuery historicProcessInstanceQuery = historyService.createHistoricProcessInstanceQuery().orderByProcessInstanceStartTime().desc();
+		if (processInstanceQueryVo != null) {
+			//根据流程开始时间筛选
+			Date startDate = processInstanceQueryVo.getStartDate();
+			if (startDate != null) {
+				historicProcessInstanceQuery = historicProcessInstanceQuery.startedAfter(startDate);
+			}
+			Date endDate = processInstanceQueryVo.getEndDate();
+			if (endDate != null) {
+				historicProcessInstanceQuery = historicProcessInstanceQuery.startedBefore(endDate);
+			}
+			//根据流程的名称来筛选
+			String procInstanceName = processInstanceQueryVo.getProcesssInstanceName();
+			if(procInstanceName != null){
+				historicProcessInstanceQuery= historicProcessInstanceQuery.processInstanceNameLike(procInstanceName);
+			}
+			//根据是否结束来筛选
+			boolean isFinished = processInstanceQueryVo.isFinished();
+			if(isFinished){
+				historicProcessInstanceQuery = historicProcessInstanceQuery.finished();
+			}else{
+				historicProcessInstanceQuery = historicProcessInstanceQuery.unfinished();
+			}
+			
+		}
+		List<HistoricProcessInstance> historicProcessInstances = historicProcessInstanceQuery.listPage(processInstanceQueryVo.getStart(), processInstanceQueryVo.getLimit());
+		List<ProcInstance> procInsList = new ArrayList<ProcInstance>();
+		if (historicProcessInstances.isEmpty()) {
+			return procInsList;
+		}
+		ProcInstance procIns = new ProcInstance();
+		for (HistoricProcessInstance historicProcessInstance : historicProcessInstances) {
+			procIns.setId(historicProcessInstance.getId());
+			procIns.setStartDate(historicProcessInstance.getStartTime());
+			procIns.setDescription(historicProcessInstance.getDescription());
+			procIns.setDurationInMillis(historicProcessInstance.getDurationInMillis());
+			
+			procInsList.add(procIns);
+		}
+
+		return procInsList;
 	}
 
 }

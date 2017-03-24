@@ -5,8 +5,11 @@ import java.util.Map;
 
 import org.activiti.engine.runtime.ProcessInstance;
 
+import com.bjtu.zs.pojo.Hasdo;
+import com.bjtu.zs.pojo.ProcInstance;
+import com.bjtu.zs.pojo.Todo;
+import com.bjtu.zs.vo.ProcessInstanceQueryVo;
 import com.bjtu.zs.vo.TaskQueryVo;
-import com.bjtu.zs.vo.Todo;
 
 /**
  * @ClassName ProcessService
@@ -38,14 +41,15 @@ public interface ProcessService {
 	 */
 	public String startProcessByKeyWithVariables(String key, Map<String, Object> variables) throws Exception;
 
-
 	/**
-	 * 待办事项列表
+	 * 根据当前用户的用户名和查询参数查询待办事务
+	 * 
 	 * @param userName 用户名
+	 * @param taskQueryVo 查询参数
 	 * @return
 	 * @throws Exception
 	 */
-	public List<Todo> getTodo(String userName,TaskQueryVo taskQueryVo) throws Exception;
+	public List<Todo> getTodo(String userName, TaskQueryVo taskQueryVo) throws Exception;
 
 	/**
 	 * 提交任务中的参数
@@ -55,9 +59,8 @@ public interface ProcessService {
 	 * @param id
 	 * @throws Exception
 	 */
-	public void submitParameter(Map<String,Object> param, String id) throws Exception;
+	public void submitParameter(Map<String, Object> param, String id) throws Exception;
 
-	
 	/**
 	 * 根据流程实例的id获取流程实例
 	 * 
@@ -66,14 +69,17 @@ public interface ProcessService {
 	 * @throws Exception
 	 */
 	public ProcessInstance getProcessInstanceById(String id) throws Exception;
-	
-	
+
 	/**
-	 * 已办
+	 * 根据参数查询流程实例
+	 * 
+	 * @param processInstanceQueryVo
+	 *            流程实例查询参数Vo
+	 * @return
+	 * @throws Exception
 	 */
-	
-	
-	
+	public List<ProcInstance> getProcessInstanceByParam(ProcessInstanceQueryVo processInstanceQueryVo) throws Exception;
+
 	/**
 	 * 
 	 */

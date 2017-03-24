@@ -32,12 +32,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bjtu.zs.pojo.ProcInstance;
+import com.bjtu.zs.pojo.Todo;
 import com.bjtu.zs.pojo.User;
 import com.bjtu.zs.service.ProcessService;
 import com.bjtu.zs.util.MailEntity;
 import com.bjtu.zs.util.QuickReturn;
+import com.bjtu.zs.vo.ProcessInstanceQueryVo;
 import com.bjtu.zs.vo.TaskQueryVo;
-import com.bjtu.zs.vo.Todo;
 
 @Controller
 @RequestMapping("/activiti")
@@ -70,17 +72,14 @@ public class ActivitiTestController {
 
 	@Autowired
 	private RepositoryService repositoryService;
-	
-	
-	
+
 	@Autowired
 	private ProcessService processService;
-	
-	//TODO  存在线程安全问题,最好使用new来解决，将邮件发件和收件人信息保存在runtimeService中的variable中
-	//或者使用ctx.getBean，并在配置文件将MailEntity的bean定义的scope设置为prototype
+
+	// TODO 存在线程安全问题,最好使用new来解决，将邮件发件和收件人信息保存在runtimeService中的variable中
+	// 或者使用ctx.getBean，并在配置文件将MailEntity的bean定义的scope设置为prototype
 	@Autowired
 	private MailEntity mail;
-
 
 	@RequestMapping("/test")
 	@ResponseBody
@@ -111,7 +110,7 @@ public class ActivitiTestController {
 				Task task = tasks.get(i);
 				System.out.println("Processing Task [" + task.getName() + "]");
 				Map<String, Object> variables = new HashMap<String, Object>();
-				//通过任务id获取要提交的数据
+				// 通过任务id获取要提交的数据
 				FormData formData = formService.getTaskFormData(task.getId());
 				for (FormProperty formProperty : formData.getFormProperties()) {
 					if (StringFormType.class.isInstance(formProperty.getType())) {
@@ -170,24 +169,25 @@ public class ActivitiTestController {
 
 		return QuickReturn.mapOk("success");
 	}
-	
-	@RequestMapping(value = "/startProcess" , method=RequestMethod.POST)
+
+	@RequestMapping(value = "/startProcess", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> startProcessByKey(String id){
+	public Map<String, Object> startProcessByKey(String id) {
 		try {
-			System.out.println("流程Id为:"+id);
+			System.out.println("流程Id为:" + id);
 			String pId = processService.startProcessByKey(id);
 			return QuickReturn.mapOk(pId);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QuickReturn.mapError("服务器错误"+e.getMessage());
+			return QuickReturn.mapError("服务器错误" + e.getMessage());
 		}
 	}
-	@RequestMapping(value = "/submitParam" , method=RequestMethod.POST)
+
+	@RequestMapping(value = "/submitParam", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String,Object> submitParam(String id,String content,String to){
-		Map<String,Object> param = new HashMap<>();
-		
+	public Map<String, Object> submitParam(String id, String content, String to) {
+		Map<String, Object> param = new HashMap<>();
+
 		param.put("content", content);
 		mail.setTo(to);
 		try {
@@ -195,32 +195,50 @@ public class ActivitiTestController {
 			return QuickReturn.mapOk("提交成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QuickReturn.mapError("服务器错误"+e.getMessage());
+			return QuickReturn.mapError("服务器错误" + e.getMessage());
 		}
 	}
-	@RequestMapping(value = "/getTodo",method=RequestMethod.GET)
-	public @ResponseBody Map<String,Object> myTodo(HttpServletRequest request,TaskQueryVo taskQueryVo){
+
+	@RequestMapping(value = "/getTodo", method = RequestMethod.GET)
+	public @ResponseBody Map<String, Object> myTodo(HttpServletRequest request, TaskQueryVo taskQueryVo) {
 		User user = (User) request.getSession().getAttribute("user");
-		
-		if(user == null){
+
+		if (user == null) {
 			return QuickReturn.mapError("用户未登录！");
 		}
-		//获取用户名
+		// 获取用户名
 		String loginId = user.getLoginId();
-		
-		//获取待办事项
+
+		// 获取待办事项
 		List<Todo> list = new ArrayList<Todo>();
-		
+
 		try {
-			list=processService.getTodo(loginId,taskQueryVo);
+			list = processService.getTodo(loginId, taskQueryVo);
 		} catch (Exception e) {
 			e.printStackTrace();
-			return QuickReturn.mapError("服务器错误："+e.getMessage());
+			return QuickReturn.mapError("服务器错误：" + e.getMessage());
 		}
-		if(list.isEmpty()){
+		if (list.isEmpty()) {
 			return QuickReturn.mapOk("");
 		}
 		return QuickReturn.mapOk(list);
-		
+
 	}
+
+	@RequestMapping(value = "/getProcIns",method = RequestMethod.GET)
+	public @ResponseBody Map<String,Object> getProcInstance(ProcessInstanceQueryVo processInstanceQueryVo){
+		
+		List<ProcInstance> list = new ArrayList<ProcInstance>();
+		
+		try {
+			list = processService.getProcessInstanceByParam(processInstanceQueryVo);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return QuickReturn.mapError("服务器错误：" + e.getMessage());
+		}
+		if (list.isEmpty()) {
+			return QuickReturn.mapOk("");
+		}
+		return QuickReturn.mapOk(list);
+	};
 }
