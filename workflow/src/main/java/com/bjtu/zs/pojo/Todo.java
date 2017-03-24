@@ -1,4 +1,4 @@
-package com.bjtu.zs.vo;
+package com.bjtu.zs.pojo;
 
 import java.util.Date;
 
@@ -9,6 +9,9 @@ import java.util.Date;
  * @Date 2017年3月17日10:59:45
  */
 public class Todo {
+	
+	//id
+	private int id;
 
 	// 任务id
 	private String taskId;
@@ -88,4 +91,13 @@ public class Todo {
 		this.owner = owner;
 	}
 
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	
 }
