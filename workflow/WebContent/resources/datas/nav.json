@@ -1,11 +1,11 @@
 [
 	{
-		"title": "基本元素",
+		"title": "教学流程",
 		"icon": "fa-cubes",
 		"spread": true,
 		"children": [
 			{
-				"title": "按钮",
+				"title": "教师听课",
 				"icon": "&#xe641;",
 				"href": "button.html"
 			}, {

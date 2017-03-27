@@ -4,7 +4,7 @@ import java.util.Date;
 
 /**
  * @ClassName Todo
- * @Description 待办事项Vo
+ * @Description 待办事项
  * @author 曾双 631710518@qq.com
  * @Date 2017年3月17日10:59:45
  */
